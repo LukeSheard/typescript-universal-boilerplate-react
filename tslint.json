@@ -1,4 +1,22 @@
 {
+  "jsRules": {
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "indent": [
+      true,
+      "tabs"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always", 
+        "singleline": "never"
+      }
+    ]
+  },
   "extends": ["tslint:latest"],
   "rules": {
     "no-namespace": false,

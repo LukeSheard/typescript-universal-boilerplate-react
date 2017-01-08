@@ -7,29 +7,28 @@
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "better-npm-run build:client && better-npm-run build:server",
-    "lint": "tslint src/**/*.ts webpack/**/*.ts webpack.config.ts www:dev.ts --fix --type-check",
-    "start": "node index.js",
-    "start:dev": "ts-node www:dev",
+    "lint": "tslint src/**/*.ts webpack/**/*.ts www:dev.ts --fix --type-check",
+    "start": "better-npm-run start",
+    "start:dev": "better-npm-run start:dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "betterScripts": {
     "start": {
-      "command": "ts-node www:dev",
+      "command": "ts-node -F www",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "start:dev": {
+      "command": "ts-node www",
       "env": {
         "NODE_ENV": "development"
       }
     },
     "build:client": {
-      "command": "webpack -p --progress",
+      "command": "webpack -p --progress --config webpack/config.ts",
       "env": {
         "WEBPACK_MODE": "production",
-        "NODE_ENV": "production"
-      }
-    },
-    "build:server": {
-      "command": "webpack -p --progress",
-      "env": {
-        "WEBPACK_MODE": "server",
         "NODE_ENV": "production"
       }
     }
@@ -52,6 +51,7 @@
     "express": "^4.14.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router": "^3.0.0",
     "ts-node": "^2.0.0",
     "typescript": "^2.1.4",
     "webpack": "^1.14.0",
@@ -63,6 +63,7 @@
     "@types/node": "^6.0.58",
     "@types/react": "0.0.0",
     "@types/react-dom": "^0.14.20",
+    "@types/react-router": "^2.0.41",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-polyfill": "^6.20.0",
@@ -70,6 +71,7 @@
     "css-loader": "^0.26.1",
     "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gulp": "^3.9.1",
     "isomorphic-style-loader": "^1.1.0",
     "json-loader": "^0.5.4",
     "node-sass": "^4.1.1",

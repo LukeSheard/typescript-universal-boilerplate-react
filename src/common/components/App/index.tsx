@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 export default class App extends React.Component<any, any> {
-	render () {
+	public render() {
 		const s = require('./style.scss');
+		console.log(s);
 		return (
 			<div className={s.app}>
 				Hello World
 			</div>
-		)
+		);
 	}
 }

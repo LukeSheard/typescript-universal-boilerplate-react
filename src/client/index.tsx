@@ -1,7 +1,13 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from 'components/App';
+// import * as React from 'react';
+// import * as ReactDOM from 'react-dom';
+// import {
+// 	browserHistory,
+// 	Router,
+// } from 'react-router';
+// import routes from '../common/routes';
 
-ReactDOM.render((
-	<App />
-), document.getElementById('root'));
+// ReactDOM.render((
+// 	<Router history={browserHistory} routes={routes} />
+// ), document.getElementById('root'));
+
+console.log('YOOOO');

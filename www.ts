@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import * as WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 import Server from './src/server';
 import { config } from './webpack/isomorphic';
