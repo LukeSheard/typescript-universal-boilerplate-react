@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./",
+        "src/*",
+        "src/common/*"
+      ]
+    },
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "outDir": "build",
+		"removeComments": false,
+    "sourceMap": true,
+		"strictNullChecks": false,
+    "target": "es6"
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}

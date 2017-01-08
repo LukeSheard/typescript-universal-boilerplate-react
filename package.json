@@ -1,0 +1,40 @@
+{
+  "name": "ts-bp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node www:dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeSheard/react-ts-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LukeSheard/react-ts-boilerplate/issues"
+  },
+  "homepage": "https://github.com/LukeSheard/react-ts-boilerplate#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "ts-node": "^2.0.0",
+    "typescript": "^2.1.4",
+    "webpack": "^1.14.0",
+    "webpack-isomorphic-tools": "^2.6.5",
+    "webpack-multi-configurator": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.34",
+    "@types/node": "^6.0.58",
+    "@types/react": "0.0.0",
+    "@types/react-dom": "^0.14.20",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.15.0"
+  }
+}
