@@ -83,7 +83,9 @@
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.15.0"
   },
-  "pre-commit": [
-    "lint"
-  ]
+  "pre-commit": {
+    "run": [
+      "lint"
+    ]
+  }
 }
