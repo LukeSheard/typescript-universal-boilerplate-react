@@ -39,3 +39,4 @@ jspm_packages
 # webpack build
 webpack-assets.json
 webpack-stats.json
+dist
