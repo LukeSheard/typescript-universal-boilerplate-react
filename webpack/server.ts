@@ -1,83 +1,76 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import isomorphicPlugin from './isomorphicPlugin';
+import { plugin } from './isomorphic';
 
-var nodeModules = {};
+const nodeModules = {};
 fs.readdirSync('node_modules')
-  .filter(function (x) {
-    return ['.bin'].indexOf(x) === -1;
-  })
-  .forEach(function (mod) {
-    nodeModules[mod] = 'commonjs ' + mod;
-  });
+	.filter((x) => ['.bin'].indexOf(x) === -1)
+	.forEach((mod) => {
+		nodeModules[mod] = 'commonjs ' + mod;
+	});
 
 export default (config) => {
 	config.merge({
-    externals: nodeModules,
-		target: 'node',
-
 		entry: path.join(__dirname, '../src/server'),
-
-		output: {
-			path: path.resolve('./dist'),
-			filename: 'server.js',
-			libraryTarget: 'commonjs2'
-		},
-
-		plugins: [],
-
+		externals: nodeModules,
 		node: {
+			Buffer: false,
+			__dirname: false,
+			__filename: false,
 			console: false,
 			global: false,
 			process: false,
-			Buffer: false,
-			__filename: false,
-			__dirname: false
-		}
-  });
+		},
+		output: {
+			filename: 'server.js',
+			libraryTarget: 'commonjs2',
+			path: path.resolve('./dist'),
+		},
+		target: 'node',
+	});
 
 	config.loader('json', {
-		test: /.json$/,
 		loader: 'json',
+		test: /.json$/,
 	});
 
 	config.loader('images', {
-    test: isomorphicPlugin.regular_expression('images'),
-    loader: 'url',
-    query: {
-      limit: 10240,
-    },
-  });
+		loader: 'url',
+		query: {
+			limit: 10240,
+		},
+		test: plugin.regular_expression('images'),
+	});
 
-  config.loader('sass', {
-    test: isomorphicPlugin.regular_expression('sass'),
-    loaders:[
+	config.loader('sass', {
+		loaders: [
 			'isomorphic-style-loader',
-      'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
+			'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
 			'postcss',
 			'sass',
 		],
-  });
+		test: plugin.regular_expression('sass'),
+	});
 
-  config.loader('css', {
-    test: isomorphicPlugin.regular_expression('css'),
-    loaders:[
-      'isomorphic-style-loader',
-      'css',
-			'postcss'
+	config.loader('css', {
+		loaders: [
+			'isomorphic-style-loader',
+			'css',
+			'postcss',
 		],
-  });
+		test: plugin.regular_expression('css'),
+	});
 
 	config.loader('js', {
+		loader: 'babel',
 		test: /\.jsx?$/,
-		loader: 'babel'
 	});
 
 	config.loader('ts', {
-		test: /\.tsx?$/,
+		exclude: /node_modules/,
 		loader: 'ts-loader',
-		exclude: /node_modules/
+		test: /\.tsx?$/,
 	});
 
-  return config;
+	return config;
 };

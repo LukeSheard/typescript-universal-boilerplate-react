@@ -18,3 +18,4 @@ indent_style = tab
 # JSON
 [*.json]
 indent_style = space
+quote_type = double

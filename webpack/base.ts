@@ -1,41 +1,41 @@
 import * as path from 'path';
 import * as Webpack from 'webpack';
-import isomorphicPlugin from './isomorphicPlugin';
+import { plugin } from './isomorphic';
 
 export default (config) => {
-  const directory = process.cwd();
+	const directory = process.cwd();
 
-  config.merge({
+	config.merge({
 		context: path.join(__dirname, '..'),
-    output: {
-      path: path.join(__dirname, '..', 'dist/static'),
-      filename: 'bundle.js',
-      publicPath: '/static/',
-    },
-    resolve: {
-      modulesDirectories: [
-        `${directory}/src`,
-        `${directory}/src/common`,
-        'node_modules',
-      ],
-      extensions: [
-        '',
-        '.js',
-        '.jsx',
+		output: {
+			filename: 'bundle.js',
+			path: path.join(__dirname, '..', 'dist/static'),
+			publicPath: '/static/',
+		},
+		plugins: [
+			plugin,
+		],
+		resolve: {
+			extensions: [
+				'',
+				'.js',
+				'.jsx',
 				'.ts',
 				'.tsx',
-      ],
-    },
-    plugins: [
-      isomorphicPlugin,
-    ],
-  });
+			],
+			modulesDirectories: [
+				`${directory}/src`,
+				`${directory}/src/common`,
+				'node_modules',
+			],
+		},
+	});
 
-  config.plugin('definePlugin', Webpack.DefinePlugin, [{
-    'process.env': JSON.stringify({
-      NODE_ENV: process.env.NODE_ENV,
-    }),
-  }]);
+	config.plugin('definePlugin', Webpack.DefinePlugin, [{
+		'process.env': JSON.stringify({
+			NODE_ENV: process.env.NODE_ENV,
+		}),
+	}]);
 
-  return config;
+	return config;
 };

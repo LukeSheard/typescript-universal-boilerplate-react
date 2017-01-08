@@ -1,17 +1,18 @@
+import chalk from 'chalk';
 import * as WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 import Server from './src/server';
-import webpackIsomorphicToolsConfig from './webpack/config';
+import { config } from './webpack/isomorphic';
 
-(<any>global).webpack_isomorphic_tools = new WebpackIsomorphicTools(webpackIsomorphicToolsConfig)
-  .server(__dirname, () => {
-    const server = Server();
+(global as any).webpack_isomorphic_tools = new WebpackIsomorphicTools(config)
+	.server(__dirname, () => {
+		const server = Server();
 
 		try {
 			server.start((err, msg) => {
-				console.log(err, msg);
+				chalk.bold(err, msg);
 			});
 		} catch (e) {
-			console.error(e);
+			chalk.white.bgRed(e);
 			process.exit(1);
 		}
-  });
+	});

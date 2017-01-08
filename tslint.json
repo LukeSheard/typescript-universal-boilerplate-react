@@ -1,0 +1,23 @@
+{
+  "extends": ["tslint:latest"],
+  "rules": {
+    "no-namespace": false,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "indent": [
+      true,
+      "tabs"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always", 
+        "singleline": "never"
+      }
+    ],
+    "no-var-requires": false
+  }
+}
