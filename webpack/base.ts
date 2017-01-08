@@ -1,25 +1,14 @@
 import * as path from 'path';
 import * as Webpack from 'webpack';
-import * as WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-
-import webpackIsomorphicToolsConfig from './config';
-
-const {
-  NODE_ENV,
-} = process.env;
-
-const _ENV_ = NODE_ENV || 'development';
-const _DEV_ = _ENV_ !== 'production';
-
-const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
-isomorphicPlugin.development(_DEV_);
+import isomorphicPlugin from './isomorphicPlugin';
 
 export default (config) => {
   const directory = process.cwd();
 
   config.merge({
+		context: path.join(__dirname, '..'),
     output: {
-      path: path.resolve(directory, 'dist'),
+      path: path.join(__dirname, '..', 'dist/static'),
       filename: 'bundle.js',
       publicPath: '/static/',
     },
@@ -35,7 +24,6 @@ export default (config) => {
         '.jsx',
 				'.ts',
 				'.tsx',
-				'.scss',
       ],
     },
     plugins: [
@@ -45,7 +33,7 @@ export default (config) => {
 
   config.plugin('definePlugin', Webpack.DefinePlugin, [{
     'process.env': JSON.stringify({
-      NODE_ENV: _ENV_,
+      NODE_ENV: process.env.NODE_ENV,
     }),
   }]);
 

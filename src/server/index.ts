@@ -1,7 +1,9 @@
 import * as Express from 'express';
 import * as http from 'http';
+import * as path from 'path';
 import * as webpack from 'webpack';
-import webpackConfig from '../../webpack.config.babel';
+import webpackConfig from '../../webpack.config';
+import router from './routes';
 
 const app = Express();
 
@@ -17,9 +19,9 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.get('*', (req: Express.Request, res: Express.Response) => {
-	res.send('Hello World');
-});
+app.use('/static', Express.static(path.join(__dirname, 'static')));
+
+app.use(router);
 
 export default function () {
 	const server: http.Server = http.createServer(app);

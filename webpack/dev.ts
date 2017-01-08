@@ -1,16 +1,6 @@
-import * as webpack from 'webpack';
-import * as WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import webpackIsomorphicToolsConfig from './config';
-
-const {
-  NODE_ENV,
-} = process.env;
-
-const _ENV_ = NODE_ENV || 'development';
-const _DEV_ = _ENV_ !== 'production';
-
-const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig);
-isomorphicPlugin.development(_DEV_);
+import * as path from 'path';
+import * as Webpack from 'webpack';
+import isomorphicPlugin from './isomorphicPlugin';
 
 export default (config) => {
   config.merge({
@@ -18,11 +8,11 @@ export default (config) => {
     debug: true,
     entry: [
       'webpack-hot-middleware/client',
-      './src/client',
+			path.join(__dirname, '../src/client/index.tsx'),
     ]
   });
 
-  config.plugin('hotmodule', webpack.HotModuleReplacementPlugin);
+  config.plugin('hotmodule', Webpack.HotModuleReplacementPlugin);
 
   config.loader('images', {
     test: isomorphicPlugin.regular_expression('images'),
@@ -56,6 +46,15 @@ export default (config) => {
     loaders: [
       'react-hot',
       'babel',
+    ],
+    exclude: /node_modules/,
+  });
+
+	config.loader('ts', {
+    test: /\.tsx?$/,
+    loaders: [
+      'react-hot',
+      'ts-loader',
     ],
     exclude: /node_modules/,
   });

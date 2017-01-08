@@ -46,6 +46,7 @@ const config = {
     },
     sass: {
       extensions: [
+				'sass',
         'scss',
       ],
       filter,

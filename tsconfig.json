@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "*": [
@@ -19,7 +18,7 @@
 		"removeComments": false,
     "sourceMap": true,
 		"strictNullChecks": false,
-    "target": "es6"
+    "target": "es5"
   },
   "exclude": [
     "node_modules",
