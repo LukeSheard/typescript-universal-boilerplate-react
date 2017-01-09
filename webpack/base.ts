@@ -86,10 +86,7 @@ export default (config) => {
 
 	config.loader('ts', {
 		exclude: /node_modules/,
-		loaders: [
-			'babel',
-			'ts-loader',
-		],
+		loader: 'ts-loader',
 		test: /\.tsx?$/,
 	});
 

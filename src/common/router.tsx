@@ -7,7 +7,8 @@ import App from './components/App';
 import NotFound from './components/NotFound';
 import Wrap from './components/Wrap';
 
-const Routes = () => (
+
+const Routes = (
 	<Route component={Wrap} path="/">
 		<IndexRoute component={App} />
 

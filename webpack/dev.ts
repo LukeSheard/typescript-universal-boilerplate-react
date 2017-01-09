@@ -33,22 +33,5 @@ export default (config) => {
 		test: isomorphicPlugin.regular_expression('css'),
 	});
 
-	config.loader('js', {
-		exclude: /node_modules/,
-		loaders: [
-			'react-hot',
-			'babel',
-		],
-		test: /\.jsx?$/,
-	});
-
-	config.loader('ts', {
-		exclude: /node_modules/,
-		loaders: [
-			'ts-loader',
-		],
-		test: /\.tsx?$/,
-	});
-
 	return config;
 };

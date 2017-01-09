@@ -32,9 +32,7 @@ export default (config) => {
 	config.loader('sass', {
 		loaders: [
 			'isomorphic-style-loader',
-			'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
-			'postcss',
-			'sass',
+			'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]!postcss!sass',
 		],
 		test: plugin.regular_expression('sass'),
 	});

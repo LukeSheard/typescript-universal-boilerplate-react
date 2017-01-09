@@ -20,7 +20,7 @@
       }
     },
     "start:dev": {
-      "command": "ts-node www:dev",
+      "command": "ts-node www:dev -F",
       "env": {
         "NODE_ENV": "development"
       }

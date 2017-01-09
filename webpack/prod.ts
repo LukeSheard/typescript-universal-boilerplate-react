@@ -1,7 +1,7 @@
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as path from 'path';
 import * as Webpack from 'webpack';
-// import { plugin } from './isomorphic';
+import { plugin as isomorphicPlugin } from './isomorphic';
 
 export default (config) => {
 	config.merge({
@@ -28,21 +28,18 @@ export default (config) => {
 	config.loader('sass', {
 		loader: ExtractTextPlugin.extract(
 			'style',
-			'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
-			'postcss',
-			'sass',
+			'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]!postcss!sass',
 		),
-		test: /\.(scss|css)$/,
+		test: isomorphicPlugin.regular_expression('sass'),
 	});
 
-	// config.loader('css', {
-	// 	loader: ExtractTextPlugin.extract(
-	// 		'style',
-	// 		'css',
-	// 		'postcss',
-	// 	),
-	// 	test: /\.css$/,
-	// });
+	config.loader('css', {
+		loader: ExtractTextPlugin.extract(
+			'style',
+			'css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!postcss',
+		),
+		test: isomorphicPlugin.regular_expression('css'),
+	});
 
 	return config;
 };
