@@ -17,10 +17,12 @@ function NotFound() {
 	);
 }
 
-export default (
-	<Route component={Wrap} path="/">
-		<IndexRoute component={App} />
+export default function() {
+	return (
+		<Route component={Wrap} path="/">
+			<IndexRoute component={App} />
 
-		<Route path="not-found" component={NotFound} />
-	</Route>
-);
+			<Route path="not-found" component={NotFound} />
+		</Route>
+	);
+}

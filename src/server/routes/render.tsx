@@ -13,7 +13,7 @@ export default function(req: Request, res: Response) {
 
 	return match({
 		history,
-		routes,
+		routes: routes(),
 	}, (error, redirectLocation, renderProps) => {
 		if (error) {
 			return res.send(500, 'Error');
