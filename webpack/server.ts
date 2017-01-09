@@ -29,19 +29,6 @@ export default (config) => {
 		target: 'node',
 	});
 
-	config.loader('json', {
-		loader: 'json',
-		test: /.json$/,
-	});
-
-	config.loader('images', {
-		loader: 'url',
-		query: {
-			limit: 10240,
-		},
-		test: plugin.regular_expression('images'),
-	});
-
 	config.loader('sass', {
 		loaders: [
 			'isomorphic-style-loader',
@@ -59,17 +46,6 @@ export default (config) => {
 			'postcss',
 		],
 		test: plugin.regular_expression('css'),
-	});
-
-	config.loader('js', {
-		loader: 'babel',
-		test: /\.jsx?$/,
-	});
-
-	config.loader('ts', {
-		exclude: /node_modules/,
-		loader: 'ts-loader',
-		test: /\.tsx?$/,
 	});
 
 	return config;

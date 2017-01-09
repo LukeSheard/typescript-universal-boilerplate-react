@@ -1,9 +1,9 @@
 import * as webpackMultiConfigurator from 'webpack-multi-configurator';
 
-import baseMixin from './webpack/base';
-import devMixin from './webpack/dev';
-import prodMixin from './webpack/prod';
-import serverMixin from './webpack/server';
+import baseMixin from './base';
+import devMixin from './dev';
+import prodMixin from './prod';
+import serverMixin from './server';
 
 const config = webpackMultiConfigurator()
 .define('base')

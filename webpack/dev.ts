@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as Webpack from 'webpack';
-import { plugin } from './isomorphic';
+import { plugin as isomorphicPlugin } from './isomorphic';
 
 export default (config) => {
 	config.merge({
@@ -14,14 +14,6 @@ export default (config) => {
 
 	config.plugin('hotmodule', Webpack.HotModuleReplacementPlugin);
 
-	config.loader('images', {
-		loader: 'url',
-		query: {
-			limit: 10240,
-		},
-		test: plugin.regular_expression('images'),
-	});
-
 	config.loader('sass', {
 		loaders: [
 			'style',
@@ -29,7 +21,7 @@ export default (config) => {
 			'postcss',
 			'sass',
 		],
-		test: plugin.regular_expression('sass'),
+		test: isomorphicPlugin.regular_expression('sass'),
 	});
 
 	config.loader('css', {
@@ -38,7 +30,7 @@ export default (config) => {
 			'css',
 			'postcss',
 		],
-		test: plugin.regular_expression('css'),
+		test: isomorphicPlugin.regular_expression('css'),
 	});
 
 	config.loader('js', {
@@ -53,7 +45,6 @@ export default (config) => {
 	config.loader('ts', {
 		exclude: /node_modules/,
 		loaders: [
-			'react-hot',
 			'ts-loader',
 		],
 		test: /\.tsx?$/,

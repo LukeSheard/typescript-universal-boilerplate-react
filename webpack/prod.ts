@@ -1,7 +1,7 @@
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as path from 'path';
 import * as Webpack from 'webpack';
-import { plugin } from './isomorphic';
+// import { plugin } from './isomorphic';
 
 export default (config) => {
 	config.merge({
@@ -22,16 +22,8 @@ export default (config) => {
 	]);
 
 	config.plugin('ExtractTextPlugin', ExtractTextPlugin, [
-		'style.css',
+		'style.min.css',
 	]);
-
-	config.loader('images', {
-		loader: 'url',
-		query: {
-			limit: 10240,
-		},
-		test: plugin.regular_expression('images'),
-	});
 
 	config.loader('sass', {
 		loader: ExtractTextPlugin.extract(
@@ -40,28 +32,17 @@ export default (config) => {
 			'postcss',
 			'sass',
 		),
-		test: plugin.regular_expression('sass'),
+		test: /\.(scss|css)$/,
 	});
 
-	config.loader('css', {
-		loader: ExtractTextPlugin.extract(
-			'style',
-			'css!postcss',
-		),
-		test: plugin.regular_expression('css'),
-	});
-
-	config.loader('js', {
-		exclude: /node_modules/,
-		loader: 'babel',
-		test: /\.jsx?$/,
-	});
-
-	config.loader('ts', {
-		exclude: /node_modules/,
-		loader: 'ts-loader',
-		test: /\.tsx?$/,
-	});
+	// config.loader('css', {
+	// 	loader: ExtractTextPlugin.extract(
+	// 		'style',
+	// 		'css',
+	// 		'postcss',
+	// 	),
+	// 	test: /\.css$/,
+	// });
 
 	return config;
 };

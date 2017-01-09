@@ -2,7 +2,7 @@ import * as Express from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import * as webpack from 'webpack';
-import webpackConfig from '../../webpack.config';
+import webpackConfig from '../../webpack/config';
 import router from './routes';
 
 const app = Express();
