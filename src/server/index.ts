@@ -1,15 +1,18 @@
 import * as Express from 'express';
+import * as path from 'path';
+import render from 'server/routes/render';
 
-export default function(params) {
-	console.log(params.chunks());
+const __ENV__ = process.env.NODE_ENV || 'development';
+const __DEV__ = __ENV__ === 'development';
 
+export default function(params: IParams) {
 	const app = Express();
 
-	app.get('*', (req, res) => {
-		res.send('Hello World');
-	});
+	app.use('/static', Express.static(path.join(__dirname, '../../', 'dist')));
+
+	app.get('*', render(params.chunks()));
 
 	app.listen(8080, () => {
-		console.log('Server Running!!');
+		console.log('Server Running!!', __DEV__);
 	});
 }

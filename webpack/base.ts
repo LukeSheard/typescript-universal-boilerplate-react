@@ -5,6 +5,7 @@ const outputPath = path.join(__dirname, '..', 'dist');
 
 const config = {
 	context: path.resolve(__dirname, '..'),
+	devtool: 'source-map',
 	entry: path.resolve(__dirname, '..', 'src/client'),
 	module: {
 		rules: [
@@ -48,8 +49,8 @@ const config = {
 		],
 	},
 	output: {
-		chunkFilename: '[name].[hash].js',
-		filename: '[name].[hash].js',
+		chunkFilename: '[name].js',
+		filename: 'bundle.js',
 		path: outputPath,
 		publicPath: '/static/',
 	},
@@ -69,6 +70,7 @@ const config = {
 	resolve: {
 		alias: {
 			common: path.resolve(__dirname, '../src/common'),
+			server: path.resolve(__dirname, '../src/server'),
 		},
 		extensions: [
 			'.js',

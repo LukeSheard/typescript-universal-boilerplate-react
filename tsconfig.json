@@ -3,8 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "*": [
-        "src/*",
-        "src/common/*"
+        "src/*"
       ]
     },
     "experimentalDecorators": true,
@@ -13,7 +12,6 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": true,
-    "outDir": "dist",
 		"removeComments": false,
     "sourceMap": true,
 		"strictNullChecks": false,
