@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react"
+  ],
+  "jsRules": {
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "indent": [
+      true,
+      "tabs"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always", 
+        "singleline": "never"
+      }
+    ]
+  },
+  "rules": {
+    "no-namespace": false,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "indent": [
+      true,
+      "tabs"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always", 
+        "singleline": "never"
+      }
+    ],
+    "no-var-requires": false,
+    "jsx-no-multiline-js": false
+  }
+}

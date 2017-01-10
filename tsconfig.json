@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*",
+        "src/common/*"
+      ]
+    },
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "outDir": "dist",
+		"removeComments": false,
+    "sourceMap": true,
+		"strictNullChecks": false,
+    "target": "es5"
+  },
+  "include": [
+    "src/**/*",
+    "webpack/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
