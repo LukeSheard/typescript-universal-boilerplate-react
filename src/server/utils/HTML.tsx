@@ -44,12 +44,12 @@ class HTML extends React.Component<IHTMLProps, {}> {
 	}
 
 	private createScripts(javascript: Object): JSX.Element[] {
-		return Object.keys(javascript).map((scriptName, index) => {
+		return Object.keys(javascript).sort().map((scriptName, index) => {
 			const scriptSrc: string = javascript[scriptName];
 			return (
 				<script
 					key={index}
-					src={`http://localhost:8081${scriptSrc}`}
+					src={scriptSrc}
 					type="text/javascript"
 				/>
 			);

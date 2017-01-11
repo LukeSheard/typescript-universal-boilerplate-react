@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "*": [
@@ -12,14 +13,14 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": true,
+    "outDir": "dist",
 		"removeComments": false,
     "sourceMap": true,
 		"strictNullChecks": false,
     "target": "es5"
   },
   "include": [
-    "src/**/*",
-    "webpack/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",

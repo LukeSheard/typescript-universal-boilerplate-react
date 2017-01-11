@@ -19,7 +19,8 @@
         "multiline": "always", 
         "singleline": "never"
       }
-    ]
+    ],
+    "jsx-no-lambda": false
   },
   "rules": {
     "no-namespace": false,
@@ -40,6 +41,7 @@
       }
     ],
     "no-var-requires": false,
-    "jsx-no-multiline-js": false
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false
   }
 }

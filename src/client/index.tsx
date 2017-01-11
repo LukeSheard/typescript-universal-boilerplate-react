@@ -10,7 +10,7 @@ const routes = createRoutes();
 const DOMelement = document.getElementById('root');
 
 ReactDOM.render((
-	<Router 
+	<Router
 		history={browserHistory}
 		routes={routes}
 	/>

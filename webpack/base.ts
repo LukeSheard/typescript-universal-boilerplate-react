@@ -1,7 +1,6 @@
 import * as path from 'path';
-import * as webpack from 'webpack';
 
-const outputPath = path.join(__dirname, '..', 'dist');
+const outputPath = path.join(__dirname, '..', 'dist/static');
 
 const config = {
 	context: path.resolve(__dirname, '..'),
@@ -11,62 +10,60 @@ const config = {
 		rules: [
 			{
 				exclude: /node_modules/,
+				loader: 'babel-loader',
 				test: /\.jsx?$/,
+			},
+			{
+				exclude: /node_modules/,
+				loader: 'ts-loader',
+				test: /\.tsx?$/,
+			},
+			{
+				include: /node_modules/,
+				test: /\.css$/,
 				use: [
-					'babel-loader',
+					{ loader: 'style-loader' },
+					{
+						loader: 'css-loader',
+						query: {
+							sourceMap: true,
+						},
+					},
 				],
 			},
 			{
 				exclude: /node_modules/,
-				test: /\.tsx?$/,
-				use: [
-					'ts-loader',
-				],
-			},
-			{
-				test: /\.scss$/,
-				use : [
-					'style-loader',
-					'css-loader?importLoaders=2&sourceMap',
-					'postcss-loader',
-					'sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true',
-				],
-			},
-			{
 				test: /\.css$/,
 				use: [
-					'style-loader',
-					'css-loader?importLoaders=2&sourceMap',
-					'postcss-loader',
+					{ loader: 'style-loader' },
+					{
+						loader: 'css-loader',
+						query: {
+							localIdentName: '[path][name]---[local]---[hash:base64:5]',
+							modules: true,
+							sourceMap: true,
+						},
+					},
 				],
 			},
 			{
+				loader: 'url-loader',
+				query: {
+					limit: 10000,
+				},
 				test: /\.(jpg|png)$/,
-				use: [
-					'url-loader?limit=10000',
-				],
 			},
 		],
 	},
 	output: {
 		chunkFilename: '[name].js',
-		filename: 'bundle.js',
+		filename: '[name].[hash].js',
 		path: outputPath,
-		publicPath: '/static/',
+		publicPath: 'http://localhost:8081/static/',
 	},
-	plugins: [
-		new webpack.LoaderOptionsPlugin({
-			debug: true,
-			options: {
-					// A temporary workaround for `scss-loader`
-					// https://github.com/jtangelder/sass-loader/issues/298
-					output: {
-							path: outputPath,
-					},
-			},
-			test: /\.scss$/,
-		}),
-	],
+	performance: {
+		hints: false,
+	},
 	resolve: {
 		alias: {
 			common: path.resolve(__dirname, '../src/common'),
@@ -79,6 +76,7 @@ const config = {
 			'.tsx',
 		],
 	},
+	stats: 'errors-only',
 };
 
 export default config;
