@@ -1,9 +1,7 @@
-const appConfig = require('./config');
+require('source-map-support/register');
 
-const params = {
-	chunks() { return  require('./dist/static/webpack-chunks.json') },
-};
+const server = require('universal-webpack').server;
+const webpackConfig = require('./webpack/config');
+const config = require('./config');
 
-const server = require('./dist/server');
-
-server(params);
+server(webpackConfig, config.universalWebpack);
