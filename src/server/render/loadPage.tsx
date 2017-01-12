@@ -6,9 +6,10 @@ import {
 import {
 	RouterContext,
 } from 'react-router';
+import { Store } from 'redux';
 import HTML from 'server/render/HTML';
 
-export default function(params, store, renderProps): string {
+export default function(params, store: Store<any>, renderProps): string {
 	return ReactDOMServer.renderToStaticMarkup((
 		<HTML
 			params={params}
@@ -21,6 +22,7 @@ export default function(params, store, renderProps): string {
 					</Provider>
 				))
 			}
+			store={store}
 		/>
 	));
 }

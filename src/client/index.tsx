@@ -13,7 +13,9 @@ import {
 	syncHistoryWithStore,
 } from 'react-router-redux';
 
-const store = createStore(browserHistory);
+const initialState = (window as any).__INITIAL_STATE__ || {};
+
+const store = createStore(browserHistory, initialState);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes(history);
 const DOMelement = document.getElementById('root');

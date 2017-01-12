@@ -8,12 +8,17 @@ import {
 	createMemoryHistory,
 	match,
 } from 'react-router';
+import {
+	syncHistoryWithStore,
+} from 'react-router-redux';
+
 import loadPage from 'server/render/loadPage';
 
 export default function(params) {
 	return (req: Request, res: Response) => {
-		const history = createMemoryHistory(req.url);
-		const store = createStore(history);
+		const memoryHistory = createMemoryHistory(req.url);
+		const store = createStore(memoryHistory);
+		const history = syncHistoryWithStore(memoryHistory, store);
 		const routes = createRoutes(store);
 
 		return match({
@@ -25,9 +30,10 @@ export default function(params) {
 			} else if (redirectLocation) {
 				return res.redirect(redirectLocation.pathname + redirectLocation.search);
 			} else if (renderProps) {
-				res.write('<!doctype HTML>');
-				res.write(loadPage(params, store, renderProps));
-				return res.status(200).end();
+				return res.status(200).send(`
+					<!doctype HTML>
+					${loadPage(params, store, renderProps)}
+				`);
 			}
 
 			return res.status(404).redirect('/not-found');

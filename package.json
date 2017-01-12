@@ -32,7 +32,7 @@
       }
     },
     "start": {
-      "command": "ts-node index.ts",
+      "command": "ts-node index.ts --fast",
       "env": {
         "NODE_ENV": "production"
       }
@@ -51,7 +51,7 @@
       }
     },
     "start:dev": {
-      "command": "nodemon --exec 'ts-node' index.ts",
+      "command": "nodemon --exec 'ts-node' index.ts --no-cache ",
       "env": {
         "NODE_ENV": "production",
         "WEBPACK_MODE": "server"

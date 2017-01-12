@@ -1,10 +1,18 @@
 import * as React from 'react';
+import { Store } from 'redux';
 
-export default class HTML extends React.Component<any, {}> {
+export interface IHTMLProps extends React.Props<HTML> {
+	params: any;
+	root: string;
+	store: Store<any>;
+}
+
+export default class HTML extends React.Component<IHTMLProps, {}> {
 	public render(): JSX.Element {
 		const {
 			params,
 			root,
+			store,
 		} = this.props;
 
 		return (
@@ -18,6 +26,12 @@ export default class HTML extends React.Component<any, {}> {
 						id="root"
 						dangerouslySetInnerHTML={{
 							__html: root,
+						}}
+					/>
+					<script
+						type="text/javascript"
+						dangerouslySetInnerHTML={{
+							__html: `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`,
 						}}
 					/>
 					{this.createScripts(params.javascript)}

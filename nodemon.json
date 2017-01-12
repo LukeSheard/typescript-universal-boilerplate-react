@@ -5,8 +5,7 @@
     "node_modules/"
   ],
   "watch": [
-    "dist",
-    "src/index.ts",
-    "webpack/"
+    "dist/server.js",
+    "dist/static/webpack-chunks.json"
   ]
 }
