@@ -1,4 +1,5 @@
 import createRoutes from 'common/routes';
+import createStore from 'common/store';
 import {
 	Request,
 	Response,
@@ -7,12 +8,13 @@ import {
 	createMemoryHistory,
 	match,
 } from 'react-router';
-import HTML from 'server/utils/HTML';
+import loadPage from 'server/render/loadPage';
 
 export default function(params) {
 	return (req: Request, res: Response) => {
 		const history = createMemoryHistory(req.url);
-		const routes = createRoutes();
+		const store = createStore(history);
+		const routes = createRoutes(store);
 
 		return match({
 			history,
@@ -23,10 +25,12 @@ export default function(params) {
 			} else if (redirectLocation) {
 				return res.redirect(redirectLocation.pathname + redirectLocation.search);
 			} else if (renderProps) {
-				return res.send(HTML(renderProps, params));
+				res.write('<!doctype HTML>');
+				res.write(loadPage(params, store, renderProps));
+				return res.status(200).end();
 			}
 
-			return res.status(400).send('not-found');
+			return res.status(404).redirect('/not-found');
 		});
 	};
 }

@@ -7,7 +7,7 @@
     "**/.DS_Store": true,
     "src/**/*.js": true,
     "src/**/*.js.map": true,
-    "node_modules/**": true,
+    "node_modules/**": false,
     "webpack-assets.json": true,
     "webpack-stats.json": true,
     "dist": false

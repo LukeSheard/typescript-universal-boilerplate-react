@@ -1,27 +1,10 @@
 import * as React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
-import {
-	RouterContext,
-} from 'react-router';
 
-export interface IHTMLProps extends React.Props<HTML> {
-	renderProps: Object;
-	params: IChunks;
-}
-
-class HTML extends React.Component<IHTMLProps, {}> {
-	public createComponent(renderProps): string {
-		return ReactDOMServer.renderToString((
-			<RouterContext
-				{...renderProps}
-			/>
-		));
-	}
-
+export default class HTML extends React.Component<any, {}> {
 	public render(): JSX.Element {
 		const {
 			params,
-			renderProps,
+			root,
 		} = this.props;
 
 		return (
@@ -34,7 +17,7 @@ class HTML extends React.Component<IHTMLProps, {}> {
 					<div
 						id="root"
 						dangerouslySetInnerHTML={{
-							__html: this.createComponent(renderProps),
+							__html: root,
 						}}
 					/>
 					{this.createScripts(params.javascript)}
@@ -68,13 +51,4 @@ class HTML extends React.Component<IHTMLProps, {}> {
 			);
 		});
 	}
-}
-
-export default function(renderProps, params: IChunks) {
-	return ReactDOMServer.renderToStaticMarkup((
-		<HTML
-			renderProps={renderProps}
-			params={params}
-		/>
-	));
 }

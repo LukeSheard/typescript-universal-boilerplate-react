@@ -1,8 +1,8 @@
 import * as Express from 'express';
 import * as path from 'path';
-import render from 'server/routes/render';
+import render from 'server/render';
 
-export default function(params: IParams) {
+export default function(params) {
 	const app = Express();
 
 	app.use('/static', Express.static(path.join(__dirname, 'static')));

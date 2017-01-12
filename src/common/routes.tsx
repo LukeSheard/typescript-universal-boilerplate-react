@@ -9,14 +9,14 @@ import {
 
 const Wrap = ({ children }) => children;
 
-const Routes = () => (
-	<Route path="/" component={App}>
-		<IndexRoute component={Home} />
-		<Route path="/counter" component={Wrap}>
-			<IndexRoute component={Counter} />
-			<Route path=":start" component={Counter} />
+export default function routes(store) {
+	return (
+		<Route path="/" component={App}>
+			<IndexRoute component={Home} />
+			<Route path="/counter" component={Wrap}>
+				<IndexRoute component={Counter} />
+				<Route path=":start" component={Counter} />
+			</Route>
 		</Route>
-	</Route>
-);
-
-export default Routes;
+	);
+}

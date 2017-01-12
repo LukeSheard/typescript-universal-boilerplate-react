@@ -42,5 +42,3 @@ webpack-stats.json
 dist
 src/**/*.js
 src/**/*.js.map
-webpack/**/*.js
-webpack/**/*.js.map

@@ -5,7 +5,8 @@
     "node_modules/"
   ],
   "watch": [
-    "src/",
+    "dist",
+    "src/index.ts",
     "webpack/"
   ]
 }
