@@ -1,14 +1,16 @@
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as path from 'path';
 import * as webpack from 'webpack';
 
-export default function(serverSide: boolean = true) {
-	const devConfig: webpack.Configuration = {
+export default function(mode: string[]): webpack.Configuration {
+	const prodConfig: webpack.Configuration = {
 		/* ==============================
 			ENTRY
 			- Merge Babel Polyfill
 		============================== */
 		entry: [
 			'babel-polyfill',
+			path.resolve(__dirname, '..', 'src', 'client'),
 		],
 
 
@@ -21,7 +23,6 @@ export default function(serverSide: boolean = true) {
 				{
 					include: /node_modules/,
 					loader: ExtractTextPlugin.extract({
-						fallbackLoader: 'style-loader',
 						loader: 'css-loader',
 					}),
 					test: /\.css$/,
@@ -29,14 +30,7 @@ export default function(serverSide: boolean = true) {
 				{
 					exclude: /node_modules/,
 					loader: ExtractTextPlugin.extract({
-						fallbackLoader: 'style-loader',
-						loader: {
-							loader: 'css-loader',
-							query: {
-								localIdentName: '[hash:base64:5]',
-								modules: true,
-							},
-						},
+						loader: 'css-loader?modules&localIndentName=[hash:base64:5]',
 					}),
 					test: /\.css$/,
 				},
@@ -59,12 +53,11 @@ export default function(serverSide: boolean = true) {
 		============================== */
 		plugins: [
 			new ExtractTextPlugin({
-				allChunks: true,
-				disable: serverSide,
+				disable: mode[1] === 'server',
 				filename: 'style.min.css',
 			}),
 		],
 	};
 
-	return devConfig;
-};
+	return prodConfig;
+}

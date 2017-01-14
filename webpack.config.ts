@@ -17,25 +17,32 @@ export default (env: string) => {
 	const configs: webpack.Configuration[] = [
 		baseConfig,
 	];
+
+	/* =======================
+		 SET MODE
+	======================= */
 	switch (mode[0]) {
 		case 'dev': {
 			configs.push(devConfig);
 			break;
 		}
 		case 'prod': {
-			configs.push(prodConfig(mode[1] === 'server'));
+			configs.push(prodConfig(mode));
 			break;
 		}
 		default: {
 			configs.push(devConfig);
 		}
 	}
-
 	const webpackConfig = webpackMerge(configs);
 
+	/* =======================
+		 SET SERVER/CLIENT SIDE
+	======================= */
 	switch (mode[1]) {
 		case 'client': {
-			return clientConfiguration(webpackConfig, universalWebpack);
+			const returnConfig = clientConfiguration(webpackConfig, universalWebpack);;
+			return returnConfig;
 		}
 		case 'server': {
 			return serverConfiguration(webpackConfig, universalWebpack);
