@@ -16,11 +16,8 @@ const webpackConfig = {
 			},
 			{
 				exclude: /node_modules/,
+				loader: 'ts-loader',
 				test: /\.tsx?$/,
-				use: [
-					'babel-loader',
-					'ts-loader',
-				],
 			},
 			{
 				include: /node_modules/,
@@ -79,6 +76,8 @@ const webpackConfig = {
 			'.jsx',
 			'.ts',
 			'.tsx',
+			'.css',
+			'.scss',
 		],
 	},
 	stats: 'errors-only',

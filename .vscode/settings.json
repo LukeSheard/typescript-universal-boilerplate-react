@@ -12,4 +12,6 @@
     "webpack-stats.json": true,
     "dist": false
   }
+,
+"typescript.tsdk": "./node_modules/typescript/lib"
 }

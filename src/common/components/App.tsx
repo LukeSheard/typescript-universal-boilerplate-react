@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
 	Link,
 } from 'react-router';
+
 require('normalize.css');
 
 export default function({ children }) {
