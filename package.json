@@ -7,26 +7,19 @@
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "npm-run-all build:client build:server",
-    "build:client": "webpack --env prod:client",
-    "build:server": "webpack --env prod:server",
+    "build:client": "webpack --env production:client",
+    "build:server": "webpack --env produdction:server",
     "lint": "tslint src/**/*.ts src/**/*.tsx webpack/**/*.ts config/index.ts",
     "start": "better-npm-run start",
     "prestart:dev": "npm run clean",
     "start:dev": "npm-run-all --parallel start:webpack:client start:webpack:server start:dev:server",
-    "start:dev:server": "better-npm-run start:dev",
+    "start:dev:server": "nodemon --exec 'ts-node' bin --no-cache",
     "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env dev:server --watch"
   },
   "betterScripts": {
     "start": {
       "command": "ts-node bin",
-      "env": {
-        "NODE_ENV": "production",
-        "RANDOMVAR": "SHOULD ONLY BE SET HERE"
-      }
-    },
-    "start:dev": {
-      "command": "nodemon --exec 'ts-node' bin --no-cache",
       "env": {
         "NODE_ENV": "production"
       }

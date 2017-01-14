@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
 
-const devConfig: webpack.Configuration = {
+const deveConfig: webpack.Configuration = {
 	/* ==============================
 		 DEV TOOL
 		 - Use inline dev tool
@@ -59,4 +59,4 @@ const devConfig: webpack.Configuration = {
 	},
 };
 
-export default devConfig;
+export default deveConfig;

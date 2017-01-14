@@ -1,5 +1,5 @@
 import { server } from 'universal-webpack';
-import { universalWebpack } from '../config';
+import { NODE_ENV, universalWebpack } from '../config';
 import webpackConfig from '../webpack.config';
 
-server(webpackConfig('prod:default'), universalWebpack);
+server(webpackConfig(`${NODE_ENV}:default`), universalWebpack);

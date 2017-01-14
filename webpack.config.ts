@@ -8,9 +8,9 @@ import {
 	universalWebpack,
 } from './config';
 
-import baseConfig from './webpack/base';
-import devConfig from './webpack/dev';
-import prodConfig from './webpack/prod';
+import baseConfig from './webpack/config:base';
+import deveConfig from './webpack/config:development';
+import prodConfig from './webpack/config:production';
 
 export default (env: string) => {
 	const mode: string[] = env.split(':');
@@ -22,16 +22,16 @@ export default (env: string) => {
 		 SET MODE
 	======================= */
 	switch (mode[0]) {
-		case 'dev': {
-			configs.push(devConfig);
+		case 'development': {
+			configs.push(deveConfig);
 			break;
 		}
-		case 'prod': {
+		case 'production': {
 			configs.push(prodConfig(mode));
 			break;
 		}
 		default: {
-			configs.push(devConfig);
+			configs.push(deveConfig);
 		}
 	}
 	const webpackConfig = webpackMerge(configs);
