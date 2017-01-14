@@ -2,26 +2,46 @@ import {
 	clientConfiguration,
 	serverConfiguration,
 } from 'universal-webpack';
+import * as webpack from 'webpack';
+import * as webpackMerge from 'webpack-merge';
 import {
-	DEV_MODE,
-	universalWebpack as settings,
+	universalWebpack,
 } from './config';
 
-import webpackConfig from './webpack';
+import baseConfig from './webpack/base';
+import devConfig from './webpack/dev';
+import prodConfig from './webpack/prod';
 
-let config;
-switch (process.env.WEBPACK_MODE) {
-	case 'server': {
-		config = serverConfiguration(webpackConfig, settings);
-		break;
+export default (env: string) => {
+	const mode: string[] = env.split(':');
+	const configs: webpack.Configuration[] = [
+		baseConfig,
+	];
+	switch (mode[0]) {
+		case 'dev': {
+			configs.push(devConfig);
+			break;
+		}
+		case 'prod': {
+			configs.push(prodConfig(mode[1] === 'server'));
+			break;
+		}
+		default: {
+			configs.push(devConfig);
+		}
 	}
-	default: {
-		config = clientConfiguration(webpackConfig, settings);
+
+	const webpackConfig = webpackMerge(configs);
+
+	switch (mode[1]) {
+		case 'client': {
+			return clientConfiguration(webpackConfig, universalWebpack);
+		}
+		case 'server': {
+			return serverConfiguration(webpackConfig, universalWebpack);
+		}
+		default: {
+			return webpackConfig;
+		}
 	}
-}
-
-if (!DEV_MODE) {
-	config = webpackConfig;
-}
-
-export default config;
+};

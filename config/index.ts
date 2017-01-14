@@ -8,8 +8,8 @@ export const universalWebpack = {
 		'normalize.css',
 	],
 	server: {
-		input: path.resolve(__dirname, 'src/server/index.ts'),
-		output: path.resolve(__dirname, 'dist/server.js'),
+		input: path.resolve(__dirname, '../src/server/index.ts'),
+		output: path.resolve(__dirname, '../dist/server.js'),
 	},
 };
 

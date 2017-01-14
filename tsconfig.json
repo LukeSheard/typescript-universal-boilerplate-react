@@ -1,34 +1,45 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "baseUrl": ".",
     "experimentalDecorators": true,
-    "paths": {
-      "config": [
-        "config"
-      ],
-      "*": [
-        "src/*"
-      ]
-    },
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": [
       "es6",
       "es7",
       "dom"
     ],
-    "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "dist",
-		"removeComments": false,
+    "noUnusedParameters": true,
+    "paths": {
+      "*": [
+        "src/*",
+        "src/common/*"
+      ],
+      "components": [
+        "src/common/*",
+        "src/common/components/*"
+      ],
+      "config": [
+        "config/*"
+      ],
+      "server": [
+        "src/server/*"
+      ]
+    },
+    "pretty": true,
     "sourceMap": true,
-		"strictNullChecks": false,
+		"strictNullChecks": true,
     "target": "es5"
   },
   "include": [
-    "src/**/*"
+    "bin/**/*",
+    "config/**/*",
+    "src/**/*",
+    "webpack/**/*"
   ],
   "exclude": [
     "node_modules/**/*",
