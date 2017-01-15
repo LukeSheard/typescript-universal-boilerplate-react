@@ -9,10 +9,14 @@ import {
 import { Store } from 'redux';
 import HTML from 'server/render/HTML';
 
-export default function(params, store: Store<any>, renderProps): string {
+export default function(
+	chunks: IChunks,
+	store: Store<IAppState>,
+	renderProps,
+): string {
 	return ReactDOMServer.renderToStaticMarkup((
 		<HTML
-			params={params}
+			chunks={chunks}
 			root={
 				ReactDOMServer.renderToString((
 					<Provider store={store}>

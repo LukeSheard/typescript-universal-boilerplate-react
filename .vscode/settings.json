@@ -6,7 +6,8 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     "node_modules": true,
-    "dist": false
+    "dist": false,
+    "coverage": true
   },
   "typescript.tsdk": "./node_modules/typescript/lib"
 }

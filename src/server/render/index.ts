@@ -14,7 +14,7 @@ import {
 
 import loadPage from 'server/render/loadPage';
 
-export default function(params) {
+export default function(chunks: IChunks) {
 	return (req: Request, res: Response) => {
 		const memoryHistory = createMemoryHistory(req.url);
 		const store = createStore(memoryHistory);
@@ -24,15 +24,15 @@ export default function(params) {
 		return match({
 			history,
 			routes,
-		}, (error, redirectLocation, renderProps) => {
+		}, (error: string, redirectLocation, renderProps) => {
 			if (error) {
-				return res.status(500).send(String(error));
+				return res.status(500).send(error);
 			} else if (redirectLocation) {
 				return res.redirect(redirectLocation.pathname + redirectLocation.search);
 			} else if (renderProps) {
 				return res.status(200).send(`
 					<!doctype HTML>
-					${loadPage(params, store, renderProps)}
+					${loadPage(chunks, store, renderProps)}
 				`);
 			}
 

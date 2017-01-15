@@ -1,15 +1,16 @@
 import * as Express from 'express';
+import { Server } from 'http';
 import * as path from 'path';
 import render from 'server/render';
 
-export default function(params) {
-	console.log(process.env.RANDOMVAR);
+export default function(params: IParams): Server {
+	const app: Express.Express = Express();
 
-	const app = Express();
-
+	/* ==============
+		 HANDLERS 
+  ============== */
 	app.use('/static', Express.static(path.join(__dirname, 'static')));
-
 	app.get('*', render(params.chunks()));
 
-	app.listen(8080);
+	return app.listen(8080);
 }

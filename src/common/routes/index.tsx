@@ -1,4 +1,3 @@
-import Home from 'components/Home';
 import Wrap from 'components/util/Wrap';
 import * as React from 'react';
 import {
@@ -6,11 +5,21 @@ import {
 	Route,
 } from 'react-router';
 
+interface ImportedRoute {
+	default: Route;
+}
+
 export default function routes(store) {
 	console.log(store);
 	return (
 		<Route path="/" component={Wrap}>
-			<IndexRoute component={Home} />
+			<IndexRoute 
+				getComponent={(_, cb) => {
+					require.ensure([], (require) => {
+						cb(null, require<ImportedRoute>('components/Home').default);
+					});
+				}}
+			/>
 		</Route>
 	);
 }

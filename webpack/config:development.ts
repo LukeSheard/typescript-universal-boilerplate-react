@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as webpack from 'webpack';
 
 const deveConfig: webpack.Configuration = {
@@ -7,9 +6,6 @@ const deveConfig: webpack.Configuration = {
 		 - Use inline dev tool
 	============================== */
 	devtool: 'inline-source-map',
-	entry: [
-		path.resolve(__dirname, '..', 'src', 'client'),
-	],
 
 	/* ==============================
 		 MODULE

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Store } from 'redux';
 
 export interface IHTMLProps extends React.Props<HTML> {
-	params: any;
+	chunks: IChunks;
 	root: string;
 	store: Store<any>;
 }
@@ -10,7 +10,7 @@ export interface IHTMLProps extends React.Props<HTML> {
 export default class HTML extends React.Component<IHTMLProps, {}> {
 	public render(): JSX.Element {
 		const {
-			params,
+			chunks,
 			root,
 			store,
 		} = this.props;
@@ -19,7 +19,7 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 			<html>
 				<head>
 					<title>Default App</title>
-					{this.createStyles(params.styles)}
+					{this.createStyles(chunks.styles)}
 				</head>
 				<body>
 					<div
@@ -34,23 +34,20 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 							__html: `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`,
 						}}
 					/>
-					{this.createScripts(params.javascript)}
+					{this.createScript(chunks.javascript.common)}
+					{this.createScript(chunks.javascript.application)}
 				</body>
 			</html>
 		);
 	}
 
-	private createScripts(javascript: Object): JSX.Element[] {
-		return Object.keys(javascript).sort().map((scriptName, index) => {
-			const scriptSrc: string = javascript[scriptName];
-			return (
-				<script
-					key={index}
-					src={scriptSrc}
-					type="text/javascript"
-				/>
-			);
-		});
+	private createScript(src: string): JSX.Element {
+		return (
+			<script
+				src={src}
+				type="text/javascript"
+			/>
+		);
 	}
 
 	private createStyles(styles: Object): JSX.Element[] {
