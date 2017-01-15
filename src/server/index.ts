@@ -16,5 +16,7 @@ export default function(params: IParams): Server {
 	app.use('/static', Express.static(path.join(__dirname, 'static')));
 	app.get('*', render(params.chunks()));
 
-	return app.listen(PORT);
+	return app.listen(PORT, () => {
+		console.log('Server started on', PORT);
+	});
 }

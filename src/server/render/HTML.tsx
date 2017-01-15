@@ -14,7 +14,10 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 	public render(): JSX.Element {
 		const {
 			children,
-			chunks,
+			chunks: {
+				javascript,
+				styles,
+			},
 			store,
 		} = this.props;
 
@@ -22,7 +25,7 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 			<html>
 				<head>
 					<title>Default App</title>
-					<link href={chunks.styles.application} rel="stylesheet" />
+					<link href={styles.application} rel="stylesheet" />
 				</head>
 				<body>
 					<div
@@ -37,18 +40,19 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 							__html: `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`,
 						}}
 					/>
-					{this.createScript(chunks.javascript.application)}
+					{this.createScript(javascript.common)}
+					{this.createScript(javascript.application)}
 				</body>
 			</html>
 		);
 	}
 
-	private createScript(src: string): JSX.Element {
-		return (
+	private createScript(src: string): JSX.Element | null {
+		return src ? (
 			<script
 				src={src}
 				type="text/javascript"
 			/>
-		);
+		) : null;
 	}
 }

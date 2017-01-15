@@ -42,7 +42,7 @@ export default function(mode: string[]): webpack.Configuration {
 			- Use local server location
 		============================== */
 		output: {
-			chunkFilename: '[chunkhash].min.js',
+			chunkFilename: '[hash].[id].min.js',
 			filename: '[hash].min.js',
 			publicPath: '/static/',
 		},
@@ -52,6 +52,12 @@ export default function(mode: string[]): webpack.Configuration {
 			- Extract CSS into file
 		============================== */
 		plugins: [
+			new webpack.optimize.CommonsChunkPlugin({
+				filename: '[hash].common.min.js',
+				minChunks: 3,
+				name: 'common',
+			}),
+			new webpack.optimize.OccurrenceOrderPlugin(false),
 			new ExtractTextPlugin({
 				disable: mode[1] === 'server',
 				filename: '[hash].min.css',

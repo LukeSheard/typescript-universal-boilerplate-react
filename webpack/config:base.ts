@@ -44,6 +44,14 @@ const baseConfig: webpack.Configuration = {
 		path: path.join(__dirname, '..', 'dist/static'),
 	},
 
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+			filename: '[name].js',
+			minChunks: 3,
+			name: 'common',
+		}),
+	],
+
 	resolve: {
 		alias: {
 			common: path.resolve(__dirname, '../src/common'),
