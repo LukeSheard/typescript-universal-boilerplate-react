@@ -1,6 +1,8 @@
-interface IAppState {
+interface IAppStateStored {
 	routing: Object;
 }
+
+type IAppState = IAppStateStored | {};
 
 interface IStyleChunk {
 	application: string;

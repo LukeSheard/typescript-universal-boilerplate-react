@@ -1,1 +1,1 @@
-# React Universal Typescript
+# React Universal Typescript Boilerplate

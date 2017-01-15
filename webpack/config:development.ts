@@ -49,7 +49,7 @@ const deveConfig: webpack.Configuration = {
 		 - Use dev server location
 	============================== */
 	output: {
-		chunkFilename: '[name].js',
+		chunkFilename: '[name].[chunkhash].js',
 		filename: '[name].bundle.js',
 		publicPath: 'http://localhost:8081/static/',
 	},

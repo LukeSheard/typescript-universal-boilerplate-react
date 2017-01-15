@@ -1,8 +1,19 @@
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as path from 'path';
 import * as webpack from 'webpack';
 
 export default function(mode: string[]): webpack.Configuration {
 	const prodConfig: webpack.Configuration = {
+		/* ==============================
+				ENTRY
+			============================== */
+		entry: {
+			application: [
+				'babel-polyfill',
+				path.resolve(__dirname, '..', 'src', 'client'),
+			],
+		},
+
 		/* ==============================
 			MODULE
 			- Use inline style loader
@@ -32,7 +43,7 @@ export default function(mode: string[]): webpack.Configuration {
 		============================== */
 		output: {
 			chunkFilename: '[chunkhash].min.js',
-			filename: '[hash].[id].min.js',
+			filename: '[hash].min.js',
 			publicPath: '/static/',
 		},
 
@@ -41,14 +52,9 @@ export default function(mode: string[]): webpack.Configuration {
 			- Extract CSS into file
 		============================== */
 		plugins: [
-			new webpack.optimize.CommonsChunkPlugin({
-				filename: '[hash].common.min.js',
-				minChunks: 2,
-				name: 'common',
-			}),
 			new ExtractTextPlugin({
 				disable: mode[1] === 'server',
-				filename: '[hash].[id].min.css',
+				filename: '[hash].min.css',
 			}),
 		],
 	};

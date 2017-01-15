@@ -22,7 +22,7 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 			<html>
 				<head>
 					<title>Default App</title>
-					{this.createStyles(chunks.styles)}
+					<link href={chunks.styles.application} rel="stylesheet" />
 				</head>
 				<body>
 					<div
@@ -37,7 +37,6 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 							__html: `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`,
 						}}
 					/>
-					{this.createScript(chunks.javascript.common)}
 					{this.createScript(chunks.javascript.application)}
 				</body>
 			</html>
@@ -51,18 +50,5 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 				type="text/javascript"
 			/>
 		);
-	}
-
-	private createStyles(styles: Object): JSX.Element[] {
-		return Object.keys(styles).map((linkName, index) => {
-			const linkHref: string = styles[linkName];
-			return (
-				<link
-					key={index}
-					href={linkHref}
-					rel="stylesheet"
-				/>
-			);
-		});
 	}
 }

@@ -8,12 +8,9 @@ const baseConfig: webpack.Configuration = {
 	/* ==============================
 			ENTRY
 		============================== */
-		entry: {
-			application: [
-				'babel-polyfill',
-				path.resolve(__dirname, '..', 'src', 'client'),
-			],
-		},
+	entry: {
+		application: path.resolve(__dirname, '..', 'src', 'client'),
+	},
 
 	/* ===================
 		MODULE LOADERS 
@@ -46,14 +43,6 @@ const baseConfig: webpack.Configuration = {
 	output: {
 		path: path.join(__dirname, '..', 'dist/static'),
 	},
-
-	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			filename: 'common.min.js',
-			minChunks: 2,
-			name: 'common',
-		}),
-	],
 
 	resolve: {
 		alias: {

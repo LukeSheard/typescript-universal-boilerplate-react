@@ -1,14 +1,22 @@
-import { Express } from 'express';
+import { Server } from 'http';
 import * as request from 'supertest';
 import createServer from '../index';
 
 describe('Server', () => {
 	describe('Create Server', () => {
-		const unit: Express = createServer({
-			chunks: () => ({
-				javascript: {},
-				styles: {},
-			}),
+		let unit: Server;
+
+		beforeEach(() => {
+			unit = createServer({
+				chunks: () => ({
+					javascript: {},
+					styles: {},
+				}),
+			});
+		});
+
+		afterEach(() => {
+			unit.close();
 		});
 
 		it('should have initialized', (done) => {

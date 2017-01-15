@@ -17,7 +17,7 @@
     "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env dev:server --watch",
     "test": "npm-run-all lint test:unit",
-    "test:unit": "jest --config test/config.json"
+    "test:unit": "jest"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "@types/enzyme": "^2.7.1",
     "@types/express": "^4.0.34",
     "@types/extract-text-webpack-plugin": "^2.0.0",
-    "@types/history": "^2.0.39",
+    "@types/history": "^2.0.45",
     "@types/jest": "^16.0.4",
     "@types/node": "^6.0.46",
     "@types/react": "^0.14.44",
@@ -82,5 +82,45 @@
     "universal-webpack": "^0.2.1",
     "webpack": "2.2.0-rc.3",
     "webpack-merge": "^2.4.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*",
+      "!src/global.d.ts",
+      "!src/client/index.tsx"
+    ],
+    "coverageReporters": [
+      "html",
+      "lcov",
+      "text"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "config",
+      "src",
+      "src/common",
+      "src/server"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "transform": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/filepreprocessor.js",
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    }
   }
 }

@@ -1,4 +1,7 @@
 import {
+	History,
+} from 'history';
+import {
 	routerMiddleware,
 	routerReducer,
 } from 'react-router-redux';
@@ -14,7 +17,7 @@ export const reducer: Reducer<IAppState> = combineReducers<IAppState>({
 	routing: routerReducer,
 });
 
-export default function(history, initialState = {}): Store<IAppState> {
+export default function(history: History, initialState: IAppState = {}): Store<IAppState> {
 	const middlewares = [
 		routerMiddleware(history),
 	];

@@ -33,7 +33,7 @@ export default function(chunks: IChunks) {
 			if (error) {
 				return res.status(500).send(error);
 			} else if (redirectLocation) {
-				return res.redirect(redirectLocation.pathname + redirectLocation.search);
+				return res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
 			} else if (renderProps) {
 				res.status(200);
 				res.write('<!doctype HTML>');
