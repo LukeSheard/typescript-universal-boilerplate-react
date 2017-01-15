@@ -17,7 +17,6 @@ describe('Server', () => {
 				application: '/static/style.css',
 			},
 		};
-		const root = 'Root Element';
 		const store: Store<IAppState> = createStore<IAppState>(() => ({
 			routing: {},
 		}));

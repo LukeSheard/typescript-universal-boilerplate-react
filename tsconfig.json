@@ -15,6 +15,7 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitUseStrict": true,
     "paths": {
       "*": [
         "src/*",
@@ -37,14 +38,10 @@
     "target": "es5"
   },
   "include": [
-    "bin/*",
-    "config/**/*",
-    "src/*",
-    "src/**/*",
-    "webpack/**/*"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
-    "node_modules/**/*",
-    "src/**/*.spec*"
+    "node_modules"
   ]
 }

@@ -9,8 +9,13 @@ describe('Server', () => {
 		beforeEach(() => {
 			unit = createServer({
 				chunks: () => ({
-					javascript: {},
-					styles: {},
+					javascript: {
+						application: '/application.min.js',
+						common: '/common.min.js',
+					},
+					styles: {
+						application: '/application.min.css',
+					},
 				}),
 			});
 		});
