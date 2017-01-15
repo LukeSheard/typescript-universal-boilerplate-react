@@ -1,11 +1,11 @@
 import * as path from 'path';
 
-export const NODE_ENV: string = process.env.NODE_ENV || 'development';
-export const DEV_MODE: boolean = NODE_ENV === 'development';
+const NODE_ENV: string = process.env.NODE_ENV || 'development';
+const DEV_MODE: boolean = NODE_ENV === 'development';
 
-export const PORT: number = process.env.PORT || 8080;
+const PORT: number = process.env.PORT || 8080;
 
-export const universalWebpack = {
+const universalWebpack = {
 	exclude_from_externals: [
 		'normalize.css',
 	],
@@ -15,8 +15,9 @@ export const universalWebpack = {
 	},
 };
 
-export default {
+export {
 	DEV_MODE,
 	NODE_ENV,
+	PORT,
 	universalWebpack,
 };

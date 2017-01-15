@@ -10,7 +10,7 @@ export default function(mode: string[]): webpack.Configuration {
 		entry: {
 			application: [
 				'babel-polyfill',
-				path.resolve(__dirname, '..', 'src', 'client'),
+				path.resolve(__dirname, '../..', 'src', 'client'),
 			],
 		},
 

@@ -9,7 +9,7 @@ const baseConfig: webpack.Configuration = {
 			ENTRY
 		============================== */
 	entry: {
-		application: path.resolve(__dirname, '..', 'src', 'client'),
+		application: path.resolve(__dirname, '../..', 'src', 'client'),
 	},
 
 	/* ===================
@@ -41,7 +41,7 @@ const baseConfig: webpack.Configuration = {
 		OUPUT LOCATION
 	=================== */
 	output: {
-		path: path.join(__dirname, '..', 'dist/static'),
+		path: path.join(__dirname, '../..', 'dist/static'),
 	},
 
 	plugins: [
@@ -54,10 +54,10 @@ const baseConfig: webpack.Configuration = {
 
 	resolve: {
 		alias: {
-			common: path.resolve(__dirname, '../src/common'),
-			components: path.resolve(__dirname, '../src/common/components'),
-			config: path.resolve(__dirname, '../config'),
-			server: path.resolve(__dirname, '../src/server'),
+			common: path.resolve(__dirname, '../../src/common'),
+			components: path.resolve(__dirname, '../../src/common/components'),
+			config: path.resolve(__dirname, '../../config'),
+			server: path.resolve(__dirname, '../../src/server'),
 		},
 		extensions: [
 			'.js',
