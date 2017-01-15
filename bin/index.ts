@@ -5,4 +5,4 @@ import {
 } from '../config';
 import webpackConfig from '../webpack.config';
 
-server(webpackConfig(`${NODE_ENV}:default`), universalWebpack);
+server(webpackConfig(`${NODE_ENV}`), universalWebpack);

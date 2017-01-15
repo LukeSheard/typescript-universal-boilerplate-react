@@ -8,9 +8,9 @@ import {
 	universalWebpack,
 } from './config';
 
-import baseConfig from './webpack/config:base';
-import deveConfig from './webpack/config:development';
-import prodConfig from './webpack/config:production';
+import baseConfig from './config/webpack/config:base';
+import deveConfig from './config/webpack/config:development';
+import prodConfig from './config/webpack/config:production';
 
 export default (env: string) => {
 	const mode: string[] = env.split(':');
