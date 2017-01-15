@@ -34,10 +34,16 @@ describe('Server', () => {
 
 		it('should render defined script tags', () => {
 			const scripts = component.find('script');
-			expect(scripts.length).toBe(2);
+			expect(scripts.length).toBe(3);
 			expect(scripts.contains((
 				<script
 					src="/static/application.js"
+					type="text/javascript"
+				/>
+			))).toBeTruthy;
+			expect(scripts.contains((
+				<script
+					src="/static/common.js"
 					type="text/javascript"
 				/>
 			))).toBeTruthy;

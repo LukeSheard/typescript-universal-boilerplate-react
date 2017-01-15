@@ -15,7 +15,7 @@
     "start:dev:server": "nodemon --exec 'ts-node' bin --no-cache",
     "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env dev:server --watch",
-    "test": "npm-run-all lint test:unit",
+    "test": "npm-run-all test:lint test:unit",
     "test:lint": "tslint src/**/*.ts src/**/*.tsx webpack/**/*.ts config/index.ts",
     "test:unit": "jest"
   },
@@ -58,6 +58,7 @@
     "nodemon": "^1.11.0",
     "normalize.css": "^5.0.0",
     "npm-run-all": "^4.0.0",
+    "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.4.2",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
@@ -83,6 +84,9 @@
     "webpack": "2.2.0-rc.3",
     "webpack-merge": "^2.4.0"
   },
+  "pre-commit": [
+    "test",
+  ],
   "jest": {
     "collectCoverageFrom": [
       "src/**/*",
