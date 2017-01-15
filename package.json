@@ -16,7 +16,7 @@
     "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env dev:server --watch",
     "test": "npm-run-all lint test:unit",
-    "lint:lint": "tslint src/**/*.ts src/**/*.tsx webpack/**/*.ts config/index.ts",
+    "test:lint": "tslint src/**/*.ts src/**/*.tsx webpack/**/*.ts config/index.ts",
     "test:unit": "jest"
   },
   "repository": {
