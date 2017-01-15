@@ -1,0 +1,40 @@
+{
+  "collectCoverageFrom": [
+    "src/**/*",
+    "!src/global.d.ts",
+    "!src/client/index.tsx"
+  ],
+  "coverageReporters": [
+    "html",
+    "lcov",
+    "text"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "functions": 50,
+      "lines": 50,
+      "statements": 50
+    }
+  },
+  "moduleNameMapper": {
+    "\\.(css|less|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js"
+  ],
+  "moduleDirectories": [
+    "node_modules",
+    "config",
+    "src",
+    "src/common",
+    "src/server"
+  ],
+  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+  "transform": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/filepreprocessor.js",
+    "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+  }
+}

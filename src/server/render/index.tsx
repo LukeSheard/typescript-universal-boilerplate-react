@@ -4,24 +4,29 @@ import {
 	Request,
 	Response,
 } from 'express';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
+import {
+	Provider,
+} from 'react-redux';
 import {
 	createMemoryHistory,
 	match,
+	RouterContext,
 } from 'react-router';
 import {
 	syncHistoryWithStore,
 } from 'react-router-redux';
-
-import loadPage from 'server/render/loadPage';
+import HTML from './HTML';
 
 export default function(chunks: IChunks) {
 	return (req: Request, res: Response) => {
 		const memoryHistory = createMemoryHistory(req.url);
 		const store = createStore(memoryHistory);
 		const history = syncHistoryWithStore(memoryHistory, store);
-		const routes = createRoutes(store);
+		const routes = createRoutes();
 
-		return match({
+		match({
 			history,
 			routes,
 		}, (error: string, redirectLocation, renderProps) => {
@@ -30,10 +35,18 @@ export default function(chunks: IChunks) {
 			} else if (redirectLocation) {
 				return res.redirect(redirectLocation.pathname + redirectLocation.search);
 			} else if (renderProps) {
-				return res.status(200).send(`
-					<!doctype HTML>
-					${loadPage(chunks, store, renderProps)}
-				`);
+				res.status(200);
+				res.write('<!doctype HTML>');
+				res.write(ReactDOMServer.renderToStaticMarkup((
+					<HTML chunks={chunks} store={store}>
+						<Provider store={store}>
+							<RouterContext
+								{...renderProps}
+							/>
+						</Provider>
+					</HTML>
+				)));
+				return res.end();
 			}
 
 			return res.status(404).redirect('/not-found');

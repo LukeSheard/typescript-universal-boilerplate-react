@@ -19,7 +19,7 @@ const initialState = (window as any).__INITIAL_STATE__ || {};
 
 const store = createStore(browserHistory, initialState);
 const history = syncHistoryWithStore(browserHistory, store);
-const routes = createRoutes(history);
+const routes = createRoutes();
 const DOMelement = document.getElementById('root');
 
 match({

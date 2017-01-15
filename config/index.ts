@@ -1,7 +1,9 @@
 import * as path from 'path';
 
-export const NODE_ENV = process.env.NODE_ENV || 'development';
-export const DEV_MODE = NODE_ENV === 'development';
+export const NODE_ENV: string = process.env.NODE_ENV || 'development';
+export const DEV_MODE: boolean = NODE_ENV === 'development';
+
+export const PORT: number = process.env.PORT || 8080;
 
 export const universalWebpack = {
 	exclude_from_externals: [

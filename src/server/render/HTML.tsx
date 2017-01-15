@@ -1,17 +1,20 @@
 import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
+import { Provider } from 'react-redux';
 import { Store } from 'redux';
+
+export type HTMLChildren = React.ReactElement<React.Props<Provider>>;
 
 export interface IHTMLProps extends React.Props<HTML> {
 	chunks: IChunks;
-	root: string;
-	store: Store<any>;
+	store: Store<IAppState>;
 }
 
 export default class HTML extends React.Component<IHTMLProps, {}> {
 	public render(): JSX.Element {
 		const {
+			children,
 			chunks,
-			root,
 			store,
 		} = this.props;
 
@@ -25,7 +28,7 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 					<div
 						id="root"
 						dangerouslySetInnerHTML={{
-							__html: root,
+							__html: ReactDOMServer.renderToString((children as HTMLChildren)),
 						}}
 					/>
 					<script

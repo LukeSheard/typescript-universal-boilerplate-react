@@ -9,11 +9,10 @@ interface ImportedRoute {
 	default: Route;
 }
 
-export default function routes(store) {
-	console.log(store);
+export default function routes() {
 	return (
 		<Route path="/" component={Wrap}>
-			<IndexRoute 
+			<IndexRoute
 				getComponent={(_, cb) => {
 					require.ensure([], (require) => {
 						cb(null, require<ImportedRoute>('components/Home').default);
