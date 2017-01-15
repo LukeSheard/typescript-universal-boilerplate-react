@@ -48,7 +48,6 @@
     "@types/react-redux": "^4.4.35",
     "@types/react-router": "^2.0.38",
     "@types/react-router-redux": "^4.0.37",
-    "@types/redux": "^3.6.0",
     "@types/webpack": "^2.2.0",
     "@types/webpack-merge": "0.0.4",
     "babel-core": "^6.21.0",
