@@ -23,6 +23,10 @@
     "jsx-no-lambda": false
   },
   "rules": {
+    "no-console": [
+      true,
+      "log"
+    ],
     "no-namespace": false,
     "quotemark": [
       true,

@@ -17,6 +17,6 @@ export default function(params: IParams): Server {
 	app.get('*', render(params.chunks()));
 
 	return app.listen(PORT, () => {
-		console.log('Server started on', PORT);
+		console.info('Server started on', PORT);
 	});
 }
