@@ -42,3 +42,5 @@ webpack-stats.json
 dist
 src/**/*.js
 src/**/*.js.map
+
+.vscode
