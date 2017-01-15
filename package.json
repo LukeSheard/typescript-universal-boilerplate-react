@@ -85,7 +85,7 @@
     "webpack-merge": "^2.4.0"
   },
   "pre-commit": [
-    "test",
+    "test"
   ],
   "jest": {
     "collectCoverageFrom": [
