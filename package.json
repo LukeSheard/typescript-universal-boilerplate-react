@@ -123,7 +123,7 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
     "transform": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/filepreprocessor.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/jest_file_preprocessor.js",
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     }
   }
