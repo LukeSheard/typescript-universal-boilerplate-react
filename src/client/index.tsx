@@ -15,7 +15,6 @@ import {
 	syncHistoryWithStore,
 } from 'react-router-redux';
 
-
 const initialState = (window as any).__INITIAL_STATE__ || {};
 
 const store = createStore(browserHistory, initialState);
@@ -33,7 +32,6 @@ match({
 		</Provider>
 	), DOMelement);
 });
-
 
 if ((module as any).hot) {
 	(module as any).hot.accept();
