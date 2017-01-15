@@ -3,5 +3,5 @@ node_js:
   - '7'
 
 script:
- - npm run lint
- - npm test
+ - npm run test:lint
+ - npm run test:unit -- --coverage

@@ -9,7 +9,6 @@
     "build": "npm-run-all build:client build:server",
     "build:client": "webpack -p --env production:client",
     "build:server": "webpack -p --env produdction:server",
-    "lint": "tslint src/**/*.ts src/**/*.tsx webpack/**/*.ts config/index.ts",
     "start": "ts-node bin",
     "prestart:dev": "npm run clean",
     "start:dev": "npm-run-all --parallel start:webpack:client start:webpack:server start:dev:server",
@@ -17,6 +16,7 @@
     "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env dev:server --watch",
     "test": "npm-run-all lint test:unit",
+    "lint:lint": "tslint src/**/*.ts src/**/*.tsx webpack/**/*.ts config/index.ts",
     "test:unit": "jest"
   },
   "repository": {
