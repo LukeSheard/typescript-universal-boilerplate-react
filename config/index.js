@@ -17,4 +17,3 @@ const config = {
 };
 
 module.exports = config;
-module.exports.default = config;
