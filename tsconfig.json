@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,18 +19,12 @@
     "noImplicitUseStrict": true,
     "paths": {
       "*": [
+        "*",
         "src/*",
         "src/common/*"
       ],
-      "components": [
-        "src/common/*",
-        "src/common/components/*"
-      ],
       "config": [
-        "./"
-      ],
-      "server": [
-        "src/server/*"
+        "config"
       ]
     },
     "pretty": true,

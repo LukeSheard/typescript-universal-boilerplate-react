@@ -1,8 +1,8 @@
+import * as config from '../../config';
 import * as Express from 'express';
 import { Server } from 'http';
 import * as path from 'path';
 import render from 'server/render';
-import { PORT } from '../../config';
 
 export default function(params: IParams): Server {
 	const app: Express.Express = Express();
@@ -16,7 +16,7 @@ export default function(params: IParams): Server {
 	app.use('/static', Express.static(path.join(__dirname, 'static')));
 	app.get('*', render(params.chunks()));
 
-	return app.listen(PORT, () => {
-		console.info('Server started on', PORT);
+	return app.listen(config.server.PORT, () => {
+		console.info('Server started on', config.server.PORT);
 	});
 }

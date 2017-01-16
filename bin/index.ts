@@ -1,8 +1,5 @@
 import { server } from 'universal-webpack';
-import {
-	NODE_ENV,
-	universalWebpack,
-} from '../config';
+import * as config from '../config';
 import webpackConfig from '../webpack.config';
 
-server(webpackConfig(`${NODE_ENV}`), universalWebpack);
+server(webpackConfig(`develop`), config.universalWebpack);

@@ -1,8 +1,35 @@
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
+import * as ManifestPlugin from 'webpack-manifest-plugin';
 
 export default function(mode: string[]): webpack.Configuration {
+	const plugins: webpack.Plugin[] = [
+		new webpack.optimize.CommonsChunkPlugin({
+			filename: '[hash].common.min.js',
+			minChunks: 3,
+			name: 'common',
+		}),
+		new webpack.optimize.OccurrenceOrderPlugin(false),
+		new ExtractTextPlugin({
+			disable: mode[1] === 'server',
+			filename: '[hash].min.css',
+		}),
+	];
+
+	const serverSide = mode[1] === 'server';
+	if (!serverSide) {
+		plugins.push(
+			new webpack.DefinePlugin({
+				'process.env.NODE_ENV': JSON.stringify('production'),
+			}),
+			new ManifestPlugin({
+				filename: '../manifest.json',
+				publicPath: '/static/',
+			}),
+		);
+	}
+
 	const prodConfig: webpack.Configuration = {
 		/* ==============================
 				ENTRY
@@ -51,18 +78,7 @@ export default function(mode: string[]): webpack.Configuration {
 			PLUGINS
 			- Extract CSS into file
 		============================== */
-		plugins: [
-			new webpack.optimize.CommonsChunkPlugin({
-				filename: '[hash].common.min.js',
-				minChunks: 3,
-				name: 'common',
-			}),
-			new webpack.optimize.OccurrenceOrderPlugin(false),
-			new ExtractTextPlugin({
-				disable: mode[1] === 'server',
-				filename: '[hash].min.css',
-			}),
-		],
+		plugins,
 	};
 
 	return prodConfig;

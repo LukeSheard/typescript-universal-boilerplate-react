@@ -56,7 +56,7 @@ const baseConfig: webpack.Configuration = {
 		alias: {
 			common: path.resolve(__dirname, '../../src/common'),
 			components: path.resolve(__dirname, '../../src/common/components'),
-			config: path.resolve(__dirname, '../../config'),
+			config: path.resolve(__dirname, '../index.js'),
 			server: path.resolve(__dirname, '../../src/server'),
 		},
 		extensions: [

@@ -4,9 +4,7 @@ import {
 } from 'universal-webpack';
 import * as webpack from 'webpack';
 import * as webpackMerge from 'webpack-merge';
-import {
-	universalWebpack,
-} from './config';
+import * as config from './config';
 
 import baseConfig from './config/webpack/config:base';
 import deveConfig from './config/webpack/config:development';
@@ -41,11 +39,11 @@ export default (env: string) => {
 	======================= */
 	switch (mode[1]) {
 		case 'client': {
-			const returnConfig = clientConfiguration(webpackConfig, universalWebpack);;
+			const returnConfig = clientConfiguration(webpackConfig, config.universalWebpack);;
 			return returnConfig;
 		}
 		case 'server': {
-			return serverConfiguration(webpackConfig, universalWebpack);
+			return serverConfiguration(webpackConfig, config.universalWebpack);
 		}
 		default: {
 			return webpackConfig;
