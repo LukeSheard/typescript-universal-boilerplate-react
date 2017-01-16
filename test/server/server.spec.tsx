@@ -1,6 +1,6 @@
 import { Server } from 'http';
+import createServer from 'server';
 import * as request from 'supertest';
-import createServer from '../index';
 
 describe('Server', () => {
 	describe('Create Server', () => {

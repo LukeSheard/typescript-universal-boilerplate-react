@@ -4,7 +4,7 @@ import {
 	createStore,
 	Store,
 } from 'redux';
-import HTML from '../HTML';
+import HTML from 'server/render/HTML';
 
 describe('Server', () => {
 	describe('<HTML />', () => {
