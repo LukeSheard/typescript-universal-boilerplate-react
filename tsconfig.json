@@ -22,9 +22,6 @@
         "*",
         "src/*",
         "src/common/*"
-      ],
-      "config": [
-        "config"
       ]
     },
     "pretty": true,
@@ -33,8 +30,11 @@
     "target": "es5"
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "bin/*",
+    "config/**/*",
+    "src/**/*",
+    "webpack/**/*",
+    "webpack.config.ts"
   ],
   "exclude": [
     "node_modules"

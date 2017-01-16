@@ -12,7 +12,7 @@
     "start": "ts-node bin",
     "prestart:dev": "npm run clean",
     "start:dev": "npm-run-all --parallel start:webpack:client start:webpack:server start:dev:server",
-    "start:dev:server": "nodemon --exec 'ts-node' bin --no-cache",
+    "start:dev:server": "nodemon --exec 'ts-node' bin",
     "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env dev:server --watch",
     "test": "npm-run-all test:lint test:unit",

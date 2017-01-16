@@ -1,4 +1,4 @@
-import * as config from '../../config';
+import * as config from 'config';
 import * as Express from 'express';
 import { Server } from 'http';
 import * as path from 'path';

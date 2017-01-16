@@ -4,8 +4,8 @@ import {
 } from 'universal-webpack';
 import * as webpack from 'webpack';
 import * as webpackMerge from 'webpack-merge';
-import * as config from './config';
 
+import * as config from './config';
 import baseConfig from './config/webpack/config:base';
 import deveConfig from './config/webpack/config:development';
 import prodConfig from './config/webpack/config:production';
