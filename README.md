@@ -10,7 +10,7 @@ The command `npm run build` will build the application into `dist`. This will no
 
 
 ### Testing 
-This boilerplate contains `tslint` and `jest` as testing utilities, and a `travis.yml` to get started. 
+This boilerplate contains [tslint](https://palantir.github.io/tslint/) and [jest](https://facebook.github.io/jest/) as testing utilities, and a `travis.yml` to get started. 
 
 ## Contributing
 I'm always open to pull requests, if you think there is something wrong or could be improved with this repo let me know. 
