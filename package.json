@@ -107,6 +107,7 @@
       }
     },
     "moduleNameMapper": {
+      "config": "<rootDir>/config/index.js",
       "\\.(css|less|scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [

@@ -1,8 +1,8 @@
+import * as config from 'config';
 import * as Express from 'express';
 import { Server } from 'http';
 import * as path from 'path';
 import render from 'server/render';
-import * as config from '../../config';
 
 export default function(params: IParams): Server {
 	const app: Express.Express = Express();
