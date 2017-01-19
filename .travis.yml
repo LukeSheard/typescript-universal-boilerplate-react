@@ -5,3 +5,6 @@ node_js:
 script:
  - npm run test:lint
  - npm run test:unit -- --coverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
