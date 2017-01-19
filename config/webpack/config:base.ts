@@ -45,6 +45,11 @@ const baseConfig: webpack.Configuration = {
 	},
 
 	plugins: [
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('development'),
+			},
+		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			filename: '[name].js',
 			minChunks: 3,

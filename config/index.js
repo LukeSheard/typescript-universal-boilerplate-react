@@ -1,7 +1,10 @@
 const path = require('path');
 
+const NODE_ENV_DEV = 'development';
+
 const config = {
-	env: process.env.NODE_ENV || 'development',
+	env: process.env.NODE_ENV || NODE_ENV_DEV,
+	dev: ( process.env.NODE_ENV || NODE_ENV_DEV ) === NODE_ENV_DEV,
 	server: {
 		PORT: process.env.PORT || 8080,
 	},

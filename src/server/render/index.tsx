@@ -40,9 +40,11 @@ export default function(chunks: IChunks) {
 				res.write(ReactDOMServer.renderToStaticMarkup((
 					<HTML chunks={chunks} store={store}>
 						<Provider store={store}>
-							<RouterContext
-								{...renderProps}
-							/>
+							<div>
+								<RouterContext
+									{...renderProps}
+								/>
+							</div>
 						</Provider>
 					</HTML>
 				)));

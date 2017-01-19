@@ -1,4 +1,5 @@
 interface IAppStateStored {
+	form: Object;
 	routing: Object;
 }
 

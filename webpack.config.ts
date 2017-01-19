@@ -16,21 +16,10 @@ export default (env: string) => {
 		baseConfig,
 	];
 
-	/* =======================
-		 SET MODE
-	======================= */
-	switch (mode[0]) {
-		case 'development': {
-			configs.push(deveConfig);
-			break;
-		}
-		case 'production': {
-			configs.push(prodConfig(mode));
-			break;
-		}
-		default: {
-			configs.push(deveConfig);
-		}
+	if (mode[0] === 'production') {
+		configs.push(prodConfig(mode));
+	} else {
+		configs.push(deveConfig);
 	}
 	const webpackConfig = webpackMerge(configs);
 
@@ -39,8 +28,7 @@ export default (env: string) => {
 	======================= */
 	switch (mode[1]) {
 		case 'client': {
-			const returnConfig = clientConfiguration(webpackConfig, config.universalWebpack);;
-			return returnConfig;
+			return clientConfiguration(webpackConfig, config.universalWebpack);
 		}
 		case 'server': {
 			return serverConfiguration(webpackConfig, config.universalWebpack);
