@@ -1,0 +1,7 @@
+.vscode
+.travis.yml
+dist
+node_modules
+nodemon.json
+npm-debug.log
+README.md
