@@ -7,7 +7,7 @@ WORKDIR /www/app
 
 # Add Project
 ADD . /www/app
-RUN ls
+RUN ls -a
 
 # Build App
 RUN npm install --loglevel=warn > /var/log/npm.log 2>&1 || cat /var/log/npm.log && false
@@ -15,7 +15,7 @@ RUN npm run build
 
 # Remove Source
 RUN rm -rf config/test node_modules src test
-RUN ls
+RUN ls -a
 
 # Install Production Deps
 RUN npm install --production --loglevel=warn > /var/log/npm:prod.log 2>&1 || cat /var/log/npm:prod.log && false
