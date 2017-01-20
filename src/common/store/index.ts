@@ -1,7 +1,3 @@
-import * as config from 'config';
-import {
-	History,
-} from 'history';
 import {
 	routerMiddleware,
 	routerReducer,
@@ -35,20 +31,20 @@ interface ISagaStore<S> extends Store<S> {
 	close?: Function;
 }
 
-export default function(history: History, initialState: IAppState = {}): Store<IAppState> {
+export default function(history: any, initialState: IAppState = {}): Store<IAppState> {
 	const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
 	const middlewares: Middleware[] = [
 		routerMiddleware(history),
 		sagaMiddleware,
 	];
-	if (config.dev) {
+	if (process.env.NODE_ENV !== 'production') {
 		middlewares.push(
 			createLogger(),
 		);
 	}
 
 	let enhancers = applyMiddleware(...middlewares);
-	if (config.dev) {
+	if (process.env.NODE_ENV !== 'production') {
 		enhancers = compose(enhancers, Devtools.instrument());
 	}
 

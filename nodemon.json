@@ -5,9 +5,7 @@
     "node_modules/"
   ],
   "watch": [
-    "dist/static/**/*",
-    "src/server/**/*",
-    "index.ts",
+    "dist/**/*",
     "webpack/*",
     "webpack.config.ts"
   ]

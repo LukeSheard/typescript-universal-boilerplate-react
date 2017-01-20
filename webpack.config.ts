@@ -1,3 +1,4 @@
+import * as path from 'path';
 import {
 	clientConfiguration,
 	serverConfiguration,
@@ -5,10 +6,19 @@ import {
 import * as webpack from 'webpack';
 import * as webpackMerge from 'webpack-merge';
 
-import * as config from './config';
 import baseConfig from './config/webpack/config:base';
 import deveConfig from './config/webpack/config:development';
 import prodConfig from './config/webpack/config:production';
+
+export const universalWebpack = {
+	exclude_from_externals: [
+		'normalize.css',
+	],
+	server: {
+		input: path.resolve(__dirname, 'src/server/index.ts'),
+		output: path.resolve(__dirname, 'dist/server.js'),
+	},
+};
 
 export default (env: string) => {
 	const mode: string[] = env.split(':');
@@ -17,7 +27,7 @@ export default (env: string) => {
 	];
 
 	if (mode[0] === 'production') {
-		configs.push(prodConfig(mode));
+		configs.push(prodConfig());
 	} else {
 		configs.push(deveConfig);
 	}
@@ -28,10 +38,10 @@ export default (env: string) => {
 	======================= */
 	switch (mode[1]) {
 		case 'client': {
-			return clientConfiguration(webpackConfig, config.universalWebpack);
+			return clientConfiguration(webpackConfig, universalWebpack);
 		}
 		case 'server': {
-			return serverConfiguration(webpackConfig, config.universalWebpack);
+			return serverConfiguration(webpackConfig, universalWebpack);
 		}
 		default: {
 			return webpackConfig;

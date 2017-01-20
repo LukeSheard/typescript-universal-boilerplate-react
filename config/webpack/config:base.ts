@@ -24,15 +24,18 @@ const baseConfig: webpack.Configuration = {
 			},
 			{
 				exclude: /node_modules/,
-				loader: 'ts-loader',
 				test: /\.tsx?$/,
+				use: [
+					'ts-loader',
+					'tslint-loader',
+				],
 			},
 			{
 				loader: 'url-loader',
 				query: {
 					limit: 10000,
 				},
-				test: /\.(jpg|png)$/,
+				test: /\.(jpg|png|gif)$/,
 			},
 		],
 	},
@@ -45,11 +48,6 @@ const baseConfig: webpack.Configuration = {
 	},
 
 	plugins: [
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify('development'),
-			},
-		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			filename: '[name].js',
 			minChunks: 3,
@@ -61,7 +59,7 @@ const baseConfig: webpack.Configuration = {
 		alias: {
 			common: path.resolve(__dirname, '../../src/common'),
 			components: path.resolve(__dirname, '../../src/common/components'),
-			config: path.resolve(__dirname, '../index.js'),
+			config: path.resolve(__dirname, '../../src/config.ts'),
 			server: path.resolve(__dirname, '../../src/server'),
 		},
 		extensions: [

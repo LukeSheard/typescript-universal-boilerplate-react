@@ -1,7 +1,6 @@
 import createRoutes from 'common/routes';
 import createStore from 'common/store';
 import Devtools from 'common/store/devtools';
-import * as config from 'config';
 import 'normalize.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -32,7 +31,7 @@ match({
 		<Provider store={store}>
 			<div>
 				<Router {...renderProps} />
-				{config.env !== 'production' ? <Devtools /> : null}
+				{process.env.NODE_ENV !== 'production' ? <Devtools /> : null}
 			</div>
 		</Provider>
 	), DOMelement);

@@ -22,10 +22,6 @@
         "*",
         "src/*",
         "src/common/*"
-      ],
-      "config": [
-        "*",
-        "config"
       ]
     },
     "pretty": true,
@@ -35,7 +31,6 @@
   },
   "include": [
     "bin/*",
-    "config/**/*",
     "src/**/*",
     "test/**/*",
     "webpack/**/*",
