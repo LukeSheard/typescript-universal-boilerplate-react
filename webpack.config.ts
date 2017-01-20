@@ -27,7 +27,7 @@ export default (env: string) => {
 	];
 
 	if (mode[0] === 'production') {
-		configs.push(prodConfig());
+		configs.push(prodConfig(mode[1] === 'client'));
 	} else {
 		configs.push(deveConfig);
 	}

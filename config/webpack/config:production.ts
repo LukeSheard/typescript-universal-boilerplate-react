@@ -2,7 +2,7 @@ import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
 
-export default function(): webpack.Configuration {
+export default function(client: boolean): webpack.Configuration {
 	const prodConfig: webpack.Configuration = {
 		/* ==============================
 				ENTRY
@@ -37,10 +37,11 @@ export default function(): webpack.Configuration {
 			],
 		},
 
-		/* ==============================
-			OUTPUT LOCATION
-			- Use local server location
-		============================== */
+		/* ================================
+			NODE
+			- Disable replacement of process
+				variables server side
+		================================ */
 		node: {
 			process: false,
 		},
@@ -70,15 +71,20 @@ export default function(): webpack.Configuration {
 				minChunks: 3,
 				name: 'common',
 			}),
+			new webpack.optimize.OccurrenceOrderPlugin(false),
+		],
+	};
+
+	if (client) {
+		(prodConfig.plugins as webpack.Plugin[]).push(
 			new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: JSON.stringify('production'),
 				},
 			}),
-			new webpack.optimize.OccurrenceOrderPlugin(false),
 			new webpack.optimize.UglifyJsPlugin(),
-		],
-	};
+		);
+	}
 
 	return prodConfig;
 }

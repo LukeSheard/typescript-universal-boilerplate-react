@@ -13,8 +13,8 @@
     "prestart:dev": "npm run clean",
     "start:dev": "npm-run-all --parallel start:webpack:client start:webpack:server start:dev:server",
     "start:dev:server": "nodemon --exec 'ts-node' bin/www",
-    "start:webpack:client": "webpack-dev-server --env dev:client --port 8081 --hot --inline",
-    "start:webpack:server": "webpack --env dev:server --watch",
+    "start:webpack:client": "webpack-dev-server --env development:client --port 8081 --hot --inline",
+    "start:webpack:server": "webpack --env development:server --watch",
     "test": "npm-run-all test:lint test:unit",
     "test:lint": "tslint src/**/* config/webpack/*",
     "test:unit": "jest"
