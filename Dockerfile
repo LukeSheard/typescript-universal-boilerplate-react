@@ -6,19 +6,20 @@ RUN mkdir -p /www/app
 WORKDIR /www/app
 
 # Add Project
+ADD package.json /www/app
+RUN npm install
+
+# Copy Files 
 ADD . /www/app
 RUN ls -a
 
 # Build App
-RUN npm install --loglevel=warn > /var/log/npm.log 2>&1 || cat /var/log/npm.log && false
 RUN npm run build
 
 # Remove Source
-RUN rm -rf config/test node_modules src test
+RUN rm -rf config/test src test
+RUN npm prune --production
 RUN ls -a
-
-# Install Production Deps
-RUN npm install --production --loglevel=warn > /var/log/npm:prod.log 2>&1 || cat /var/log/npm:prod.log && false
 
 EXPOSE 8000
 CMD [ "npm", "start" ]

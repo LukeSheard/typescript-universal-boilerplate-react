@@ -8,10 +8,7 @@ export default function(client: boolean): webpack.Configuration {
 				ENTRY
 			============================== */
 		entry: {
-			application: [
-				'babel-polyfill',
-				path.resolve(__dirname, '../..', 'src', 'client'),
-			],
+			application: path.resolve(__dirname, '../..', 'src', 'client'),
 		},
 
 		/* ==============================

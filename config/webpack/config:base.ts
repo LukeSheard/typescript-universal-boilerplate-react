@@ -24,18 +24,15 @@ const baseConfig: webpack.Configuration = {
 			},
 			{
 				exclude: /node_modules/,
+				loader: 'ts-loader',
 				test: /\.tsx?$/,
-				use: [
-					'ts-loader',
-					'tslint-loader',
-				],
 			},
 			{
 				loader: 'url-loader',
 				query: {
 					limit: 10000,
 				},
-				test: /\.(jpg|png|gif)$/,
+				test: /\.(jpg|jpeg|png|gif)$/,
 			},
 		],
 	},
