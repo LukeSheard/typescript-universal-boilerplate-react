@@ -4,14 +4,40 @@ import {
 	Redirect,
 	Route,
 } from 'react-router';
-import getComponent from './getComponent';
 
 export default function routes(): React.ReactElement<React.Props<Route>> {
 	return (
-		<Route path="/" getComponent={getComponent('App')}>
-			<IndexRoute getComponent={getComponent('Home')} />
-			<Route path="page" getComponent={getComponent('Page')} />
-			<Route path="not-found" getComponent={getComponent('NotFound')} />
+		<Route
+			path="/"
+			getComponent={(_, cb) => {
+				require.ensure([], (require) => {
+					cb(null, require<INodeModule>('./App/index.tsx').default);
+				});
+			}}
+		>
+			<IndexRoute
+				getComponent={(_, cb) => {
+					require.ensure([], (require) => {
+						cb(null, require<INodeModule>('./Home/index.tsx').default);
+					});
+				}}
+			/>
+			<Route
+				path="page"
+				getComponent={(_, cb) => {
+					require.ensure([], (require) => {
+						cb(null, require<INodeModule>('./Page').default);
+					});
+				}}
+			/>
+			<Route
+				path="not-found"
+				getComponent={(_, cb) => {
+					require.ensure([], (require) => {
+						cb(null, require<INodeModule>('./NotFound').default);
+					});
+				}}
+			/>
 			<Redirect from="*" to="/not-found" />
 		</Route>
 	);
