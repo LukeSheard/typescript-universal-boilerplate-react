@@ -9,7 +9,7 @@ export default function(params: IParams): Server {
 	/* ==============
 		 HANDLERS 
   ============== */
-	app.set('port', process.env.PORT || 8080);
+	app.set('port', process.env.PORT);
 	app.get('/status', (_, res: Express.Response) => {
 		res.status(200).send('Server is up');
 	});

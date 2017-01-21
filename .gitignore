@@ -28,3 +28,6 @@ dist
 # Preferences
 .idea
 .vscode
+
+# Config 
+.env
