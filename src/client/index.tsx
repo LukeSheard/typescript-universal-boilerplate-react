@@ -1,7 +1,6 @@
 import createRoutes from 'common/routes';
 import createStore from 'common/store';
 import Devtools from 'common/store/devtools';
-import 'normalize.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {
@@ -15,6 +14,7 @@ import {
 import {
 	syncHistoryWithStore,
 } from 'react-router-redux';
+import 'sanitize.css/sanitize.css';
 
 const initialState: IAppState = (window as any).__INITIAL_STATE__ || {};
 

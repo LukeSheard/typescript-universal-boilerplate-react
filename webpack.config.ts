@@ -12,7 +12,7 @@ import prodConfig from './config/webpack/config:production';
 
 export const universalWebpack = {
 	exclude_from_externals: [
-		'normalize.css',
+		'sanitize.css',
 	],
 	server: {
 		input: path.resolve(__dirname, 'src/server/index.ts'),
