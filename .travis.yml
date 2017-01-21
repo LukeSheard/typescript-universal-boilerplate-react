@@ -2,9 +2,15 @@ language: node_js
 node_js:
   - '7'
 
+sudo: required
+
+services:
+  - docker
+
 script:
  - npm run test:lint
- - npm run test:unit -- --coverage
+ - npm run test:unit
+ - docker build -t react-typescript-universal . 
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

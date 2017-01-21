@@ -11,7 +11,6 @@ RUN npm install
 
 # Copy Files 
 ADD . /www/app
-RUN ls -a
 
 # Build App
 RUN npm run build
@@ -19,7 +18,7 @@ RUN npm run build
 # Remove Source
 RUN rm -rf config/test src test
 RUN npm prune --production
-RUN ls -a
 
-EXPOSE 8000
+# Expose Port 
+EXPOSE 8080
 CMD [ "npm", "start" ]
