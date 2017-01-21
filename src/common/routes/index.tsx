@@ -1,42 +1,33 @@
 import * as React from 'react';
 import {
 	IndexRoute,
+	Redirect,
 	Route,
 } from 'react-router';
-// import { Store } from 'redux';
 
 interface ImportedRoute {
 	default: Route;
 }
 
-export default function routes() {
-// export default function routes(store: Store<IAppState>) {
-	// const connect = (fn) => (...args) => fn(store, ...args);
+export const getRouteComponent = (routeName: string) => (_, cb: Function) => {
+	require.ensure([], (require) => {
+		let route: ImportedRoute;
+		try {
+			route = require<ImportedRoute>('./' + routeName + '/index.tsx');
+			cb(null, route.default);
+		} catch (e) {
+			getRouteComponent('NotFound')(_, cb);
+		}
+	});
+};
 
+export default function routes(): React.ReactElement<React.Props<Route>> {
 	return (
-		<Route
-			path="/"
-			getComponent={(_, cb) => {
-				require.ensure([], (require) => {
-					cb(null, require<ImportedRoute>('components/App').default);
-				});
-			}}
-		>
-			<IndexRoute
-				getComponent={(_, cb) => {
-					require.ensure([], (require) => {
-						cb(null, require<ImportedRoute>('components/Home').default);
-					});
-				}}
-			/>
-			<Route
-				path="page"
-				getComponent={(_, cb) => {
-					require.ensure([], (require) => {
-						cb(null, require<ImportedRoute>('components/Page').default);
-					});
-				}}
-			/>
+		<Route path="/" getComponent={getRouteComponent('App')}>
+			<IndexRoute getComponent={getRouteComponent('Home')} />
+			<Route path="page" getComponent={getRouteComponent('Page')} />
+			<Route path="not-found" getComponent={getRouteComponent('NotFound')} />
+			<Redirect from="*" to="/not-found" />
 		</Route>
 	);
 }

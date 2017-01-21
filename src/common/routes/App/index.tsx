@@ -10,6 +10,7 @@ export default class App extends React.Component<{}, {}> {
 				<nav>
 					<Link to="/">Home</Link>
 					<Link to="/page">Page2</Link>
+					<Link to="/lol">LOL</Link>
 				</nav>
 				<main>
 					{this.props.children}
