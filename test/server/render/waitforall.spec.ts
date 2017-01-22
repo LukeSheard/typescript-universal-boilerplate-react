@@ -22,10 +22,10 @@ describe('Server: Render: Wait For All', () => {
 			params: null,
 		};
 		const generator = waitforall(req, renderProps)();
-		const call = generator.next().value;
-		expect(call['@@redux-saga/IO']).toBeTruthy();
-		expect(call.CALL.args).toEqual([]);
-		expect(call.CALL.context).toBeNull();
+		const action = generator.next().value;
+		expect(action['@@redux-saga/IO']).toBeTruthy();
+		expect(action.FORK.args).toEqual([]);
+		expect(action.FORK.context).toBeNull();
 		expect(generator.next().done).toBeTruthy;
 	});
 });
