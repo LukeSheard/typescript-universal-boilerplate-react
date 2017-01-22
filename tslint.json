@@ -13,6 +13,7 @@
       true,
       "tabs"
     ],
+    "no-switch-case-fall-through": false,
     "trailing-comma": [
       true,
       {
@@ -37,6 +38,7 @@
       true,
       "tabs"
     ],
+    "prefer-for-of": false,
     "trailing-comma": [
       true,
       {

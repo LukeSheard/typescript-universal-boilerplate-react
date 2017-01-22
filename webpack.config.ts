@@ -20,7 +20,7 @@ export const universalWebpack = {
 	},
 };
 
-export default (env: string) => {
+export default (env: string = '') => {
 	const mode: string[] = env.split(':');
 	const configs: webpack.Configuration[] = [
 		baseConfig,

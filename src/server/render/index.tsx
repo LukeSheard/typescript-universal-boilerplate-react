@@ -18,6 +18,7 @@ import {
 	syncHistoryWithStore,
 } from 'react-router-redux';
 import HTML from './HTML';
+import waitforall from './waitforall';
 
 export default function(chunks: IChunks) {
 	return (req: Request, res: Response) => {
@@ -35,20 +36,22 @@ export default function(chunks: IChunks) {
 			} else if (redirectLocation) {
 				return res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
 			} else if (renderProps) {
-				res.status(200);
-				res.write('<!doctype HTML>');
-				res.write(ReactDOMServer.renderToStaticMarkup((
-					<HTML chunks={chunks} store={store}>
-						<Provider store={store}>
-							<div>
-								<RouterContext
-									{...renderProps}
-								/>
-							</div>
-						</Provider>
-					</HTML>
-				)));
-				return res.end();
+				return store.run(waitforall(req, renderProps)).done.then(() => {
+					res.status(200);
+					res.write('<!doctype HTML>');
+					res.write(ReactDOMServer.renderToStaticMarkup((
+						<HTML chunks={chunks} store={store}>
+							<Provider store={store}>
+								<div>
+									<RouterContext
+										{...renderProps}
+									/>
+								</div>
+							</Provider>
+						</HTML>
+					)));
+					return res.end();
+				});
 			}
 
 			return res.status(404).redirect('/not-found');

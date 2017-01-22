@@ -26,12 +26,12 @@ export const reducer: Reducer<IAppState> = combineReducers<IAppState>({
 	routing: routerReducer,
 });
 
-interface ISagaStore<S> extends Store<S> {
-	run?: Function;
-	close?: Function;
+interface ISagaStore extends Store<IAppState> {
+	run: Function;
+	close: Function;
 }
 
-export default function(history: any, initialState: IAppState = {}): Store<IAppState> {
+export default function(history: any, initialState: IAppState = {}): ISagaStore {
 	const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
 	const middlewares: Middleware[] = [
 		routerMiddleware(history),
@@ -48,9 +48,9 @@ export default function(history: any, initialState: IAppState = {}): Store<IAppS
 		enhancers = compose(enhancers, Devtools.instrument());
 	}
 
-	const store: ISagaStore<IAppState> = createStore<IAppState>(reducer, initialState, enhancers);
-	store.run = sagaMiddleware.run;
-	store.close = () => store.dispatch(END);
+	const store: Store<IAppState> = createStore<IAppState>(reducer, initialState, enhancers);
+	(store as ISagaStore).run = sagaMiddleware.run;
+	(store as ISagaStore).close = () => store.dispatch(END);
 
-	return store;
+	return (store as ISagaStore);
 }

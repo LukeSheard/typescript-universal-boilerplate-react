@@ -5,7 +5,6 @@ import * as request from 'supertest';
 describe('Server', () => {
 	describe('Create Server', () => {
 		let unit: Server;
-
 		beforeEach(() => {
 			unit = createServer({
 				chunks: () => ({
@@ -22,12 +21,6 @@ describe('Server', () => {
 
 		afterEach(() => {
 			unit.close();
-		});
-
-		it('should have initialized', (done) => {
-			request(unit)
-				.get('/status')
-				.expect(200, done);
 		});
 
 		it('should be able to render an index page', (done) => {

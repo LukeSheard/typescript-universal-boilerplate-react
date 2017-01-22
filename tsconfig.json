@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
@@ -10,8 +11,9 @@
       "es7",
       "dom"
     ],
+    "module": "commonjs",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
@@ -27,7 +29,7 @@
     "pretty": true,
     "sourceMap": true,
 		"strictNullChecks": true,
-    "target": "es5"
+    "target": "es2015"
   },
   "include": [
     "bin/*",

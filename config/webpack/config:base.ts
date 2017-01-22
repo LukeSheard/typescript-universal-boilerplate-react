@@ -24,8 +24,11 @@ const baseConfig: webpack.Configuration = {
 			},
 			{
 				exclude: /node_modules/,
-				loader: 'ts-loader',
 				test: /\.tsx?$/,
+				use: [
+					'babel-loader',
+					'ts-loader',
+				],
 			},
 			{
 				loader: 'url-loader',

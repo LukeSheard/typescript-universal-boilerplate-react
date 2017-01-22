@@ -23,6 +23,11 @@ interface IParams {
 	chunks: () => IChunks;
 }
 
+interface IRenderProps {
+	components: any[];
+	params: any;
+}
+
 interface NodeRequire { // tslint:disable-line 
 	ensure: (paths: string[], callback: (require: <T>(path: string) => T) => void, name?: string ) => void;
 }
