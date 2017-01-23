@@ -30,7 +30,7 @@ export default function(chunks: IChunks) {
 		match({
 			history,
 			routes,
-		}, (error: string, redirectLocation, renderProps) => {
+		}, (error, redirectLocation, renderProps) => {
 			if (error) {
 				return res.status(500).send(error);
 			} else if (redirectLocation) {

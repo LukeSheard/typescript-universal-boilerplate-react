@@ -28,5 +28,11 @@ describe('Server', () => {
 				.get('/')
 				.expect(200, done);
 		});
+
+		it('should never 404 an unknown page', (done) => {
+			request(unit)
+				.get('/this-page-will-never-exist')
+				.expect(404, done);
+		});
 	});
 });

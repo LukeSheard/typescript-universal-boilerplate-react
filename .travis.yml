@@ -2,11 +2,6 @@ language: node_js
 node_js:
   - '7'
 
-sudo: required
-
-services:
-  - docker
-
 script:
  - npm run test:lint
  - npm run test:unit

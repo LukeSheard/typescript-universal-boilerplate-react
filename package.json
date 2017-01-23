@@ -61,6 +61,7 @@
     "npm-run-all": "^4.0.1",
     "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.4.2",
+    "redux-mock-store": "^1.2.1",
     "rimraf": "^2.5.4",
     "sanitize.css": "^4.1.0",
     "style-loader": "^0.13.1",
@@ -135,7 +136,7 @@
     "start:webpack:client": "webpack-dev-server --env development:client --port 8081 --hot --inline",
     "start:webpack:server": "webpack --env development:server --watch",
     "test": "npm-run-all test:lint test:unit",
-    "test:lint": "tslint src/**/* config/webpack/*",
+    "test:lint": "tslint src/**/* test/**/* config/webpack/*",
     "test:unit": "jest"
   },
   "repository": {

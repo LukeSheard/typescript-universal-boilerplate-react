@@ -1,16 +1,8 @@
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
-import * as path from 'path';
 import * as webpack from 'webpack';
 
 export default function(client: boolean): webpack.Configuration {
 	const prodConfig: webpack.Configuration = {
-		/* ==============================
-				ENTRY
-			============================== */
-		entry: {
-			application: path.resolve(__dirname, '../..', 'src', 'client'),
-		},
-
 		/* ==============================
 			MODULE
 			- Use inline style loader

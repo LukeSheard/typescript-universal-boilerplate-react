@@ -15,6 +15,7 @@ import {
 	syncHistoryWithStore,
 } from 'react-router-redux';
 import 'sanitize.css/sanitize.css';
+import rootSaga from './rootsaga';
 
 const initialState: IAppState = (window as any).__INITIAL_STATE__ || {};
 
@@ -27,6 +28,8 @@ match({
 	history,
 	routes,
 }, (_, __, renderProps) => {
+	store.run(rootSaga);
+
 	ReactDOM.render((
 		<Provider store={store}>
 			<div>

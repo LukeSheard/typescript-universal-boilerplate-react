@@ -6,7 +6,7 @@ export default function(req: Express.Request, {
 	components,
 	params,
 }: IRenderProps) {
-	return function* waitForAll() {
+	return function * waitForAll() {
 		const sagas = components.filter((component) => component && component.preload)
 			.map((component) => component.preload(params, req))
 			.reduce((result, results) => result.concat(results), []);

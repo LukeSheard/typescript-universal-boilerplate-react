@@ -35,10 +35,10 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 						}}
 					/>
 					<script
-						type="text/javascript"
 						dangerouslySetInnerHTML={{
 							__html: `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`,
 						}}
+						type="text/javascript"
 					/>
 					{this.createScript(javascript.common)}
 					{this.createScript(javascript.application)}
@@ -48,11 +48,6 @@ export default class HTML extends React.Component<IHTMLProps, {}> {
 	}
 
 	private createScript(src: string): JSX.Element | null {
-		return src ? (
-			<script
-				src={src}
-				type="text/javascript"
-			/>
-		) : null;
+		return <script src={src} type="text/javascript" />;
 	}
 }

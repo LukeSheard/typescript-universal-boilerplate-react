@@ -9,7 +9,10 @@ const baseConfig: webpack.Configuration = {
 			ENTRY
 		============================== */
 	entry: {
-		application: path.resolve(__dirname, '../..', 'src', 'client'),
+		application: [
+			'babel-polyfill',
+			path.resolve(__dirname, '../..', 'src', 'client'),
+		],
 	},
 
 	/* ===================
