@@ -1,8 +1,8 @@
 import "normalize.css";
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import { browserHistory, Router } from "react-router";
 import createRoutes from "../common/routes";
-import * as ReactDOM from "react-dom";
 
 const history = browserHistory;
 const routes = createRoutes();

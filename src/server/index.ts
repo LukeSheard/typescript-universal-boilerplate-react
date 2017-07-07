@@ -1,7 +1,10 @@
 import * as hook from "css-modules-require-hook";
+import debug from "debug";
 import * as Express from "express";
 import { join } from "path";
 import render from "./render";
+
+const log = debug("app:server");
 
 hook({
   generateScopedName:
@@ -22,5 +25,5 @@ if (process.env.NODE_ENV !== "production") {
 app.get("*", render);
 
 app.listen(8080, () => {
-  console.log("Server started");
+  log("Server started");
 });

@@ -6,6 +6,7 @@ const commonCSS = new ExtractTextPlugin("[chunkhash].min.css");
 const vendorCSS = new ExtractTextPlugin("[name].min.css");
 
 const config: webpack.Configuration = {
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -29,7 +30,8 @@ const config: webpack.Configuration = {
             options: {
               importLoaders: 1,
               localIdentName: "[hash:base64:10]",
-              module: true
+              module: true,
+              sourceMap: true
             }
           }
         })
@@ -39,7 +41,12 @@ const config: webpack.Configuration = {
         test: /.css$/,
         use: vendorCSS.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use: {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          }
         })
       }
     ]
