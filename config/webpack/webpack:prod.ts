@@ -13,10 +13,10 @@ const config: webpack.Configuration = {
         exclude: /node_modules/,
         loader: "ts-loader",
         options: {
-          silent: true,
           compilerOptions: {
             module: "ESNext"
-          }
+          },
+          silent: true
         },
         test: /.tsx?$/
       },

@@ -9,6 +9,7 @@ const config: webpack.Configuration = {
     rules: [
       {
         exclude: /node_modules/,
+        test: /.tsx?$/,
         use: [
           "react-hot-loader",
           {
@@ -17,8 +18,7 @@ const config: webpack.Configuration = {
               silent: true
             }
           }
-        ],
-        test: /.tsx?$/
+        ]
       },
       {
         exclude: /node_modules/,

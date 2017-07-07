@@ -3,7 +3,9 @@
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "no-require-imports": false
+    "no-require-imports": false,
+    "no-var-requires": false,
+    "jsx-no-lambda": false
   },
   "rulesDirectory": []
 }

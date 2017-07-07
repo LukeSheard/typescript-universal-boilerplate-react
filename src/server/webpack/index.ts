@@ -1,5 +1,5 @@
-import { Express } from "express";
 import debug from "debug";
+import { Express } from "express";
 import * as webpack from "webpack";
 import * as webpackDevMiddleware from "webpack-dev-middleware";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
@@ -14,13 +14,13 @@ const error = debug("app:webpack:error");
 export default function(app: Express) {
   app.use(
     webpackDevMiddleware(compiler, {
+      error,
+      log,
       publicPath: (config.output && config.output.publicPath) || "/",
-      log: log,
-      warn: warn,
-      error: error,
       stats: {
         colors: true
-      }
+      },
+      warn
     })
   );
   app.use(webpackHotMiddleware(compiler));
