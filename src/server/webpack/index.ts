@@ -7,9 +7,10 @@ import createConfig from "../../../webpack.config";
 
 const config = createConfig(process.env.NODE_ENV || "development");
 const compiler = webpack(config);
-const log = debug("app:webpack");
-const warn = debug("app:webpack:warn");
-const error = debug("app:webpack:error");
+const hot = debug("app:webpack:hot");
+const log = debug("app:webpack:dev");
+const warn = debug("app:webpack:dev:warn");
+const error = debug("app:webpack:dev:error");
 
 export default function(app: Express) {
   app.use(
@@ -23,5 +24,9 @@ export default function(app: Express) {
       warn
     })
   );
-  app.use(webpackHotMiddleware(compiler));
+  app.use(
+    webpackHotMiddleware(compiler, {
+      log: hot
+    })
+  );
 }

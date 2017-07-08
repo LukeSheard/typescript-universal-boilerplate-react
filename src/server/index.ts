@@ -7,10 +7,7 @@ import render from "./render";
 const log = debug("app:server");
 
 hook({
-  generateScopedName:
-    process.env.NODE_ENV === "production"
-      ? "[hash:base64:10]"
-      : "[name]__[local]___[hash:base64:5]"
+  generateScopedName: "[hash:base64:10]"
 });
 
 const app = Express();

@@ -3,7 +3,7 @@ import * as webpack from "webpack";
 import * as ManifestPlugin from "webpack-manifest-plugin";
 
 const commonCSS = new ExtractTextPlugin("[chunkhash].min.css");
-const vendorCSS = new ExtractTextPlugin("[name].min.css");
+const vendorCSS = new ExtractTextPlugin("[chunkhash].min.css");
 
 const config: webpack.Configuration = {
   devtool: "source-map",
@@ -56,7 +56,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      filename: "common.min.js",
+      filename: "[chunkhash].min.js",
       minChunks(module) {
         return module.context && module.context.indexOf("node_modules") !== -1;
       },

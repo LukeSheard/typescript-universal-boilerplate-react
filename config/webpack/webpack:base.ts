@@ -1,5 +1,6 @@
 import { join } from "path";
 import * as webpack from "webpack";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 const config: webpack.Configuration = {
   context: join(__dirname, "../../"),
@@ -33,7 +34,13 @@ const config: webpack.Configuration = {
     path: join(__dirname, "../../", "build"),
     publicPath: "/"
   },
-  plugins: [new webpack.NoEmitOnErrorsPlugin()],
+  plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      logLevel: "silent"
+    })
+  ],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },

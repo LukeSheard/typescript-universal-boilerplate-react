@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": ["dom", "es2015"],
+    "lib": ["es2015", "es2016", "es2017", "dom"],
     "allowJs": true,
     "jsx": "react",
     "declaration": false,
@@ -10,6 +10,7 @@
     "strict": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
+    "outDir": "dist",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

@@ -7,13 +7,14 @@
     "prebuild": "rm -rf build",
     "build": "webpack -p --env=production --optimize-minimize",
     "lint": "tslint --project tsconfig.json --type-check",
-    "start": "NODE_ENV=production ts-node ./src/server/index.ts",
-    "start:dev": "ts-node ./src/server/index.ts"
+    "start": "cross-env DEBUG=app:*,express:router:* NODE_ENV=production ts-node ./src/server/index.ts",
+    "start:dev": "cross-env DEBUG=app:* ts-node ./src/server/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^5.0.1",
     "css-modules-require-hook": "^4.0.6",
     "debug": "^2.6.8",
     "express": "^4.15.3",
@@ -32,6 +33,7 @@
     "@types/webpack": "^3.0.1",
     "@types/webpack-dev-middleware": "^1.9.1",
     "@types/webpack-hot-middleware": "^2.15.0",
+    "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "normalize.css": "^7.0.0",
@@ -42,6 +44,7 @@
     "tslint-react": "^3.0.0",
     "typescript": "^2.4.1",
     "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.1",
     "webpack-manifest-plugin": "^1.1.0",
