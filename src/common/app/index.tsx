@@ -7,7 +7,7 @@ export default function({ children }) {
     <main id="app">
       <nav className={style.nav}>
         <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/page">Page</Link>
         <Link to="/lol">Lol</Link>
       </nav>
       {children}

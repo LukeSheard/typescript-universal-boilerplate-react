@@ -1,7 +1,9 @@
 {
   "defaultSeverity": "error",
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
-  "jsRules": {},
+  "jsRules": {
+    "trailing-comma": [false]
+  },
   "rules": {
     "no-require-imports": false,
     "no-var-requires": false,

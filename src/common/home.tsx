@@ -1,5 +1,5 @@
 import * as React from "react";
 
 export default function() {
-  return <div>Home </div>;
+  return <button href="/page">Home</button>;
 }

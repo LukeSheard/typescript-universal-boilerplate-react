@@ -1,5 +1,6 @@
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 import * as webpack from "webpack";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import * as ManifestPlugin from "webpack-manifest-plugin";
 
 const commonCSS = new ExtractTextPlugin("[chunkhash].min.css");
@@ -11,14 +12,16 @@ const config: webpack.Configuration = {
     rules: [
       {
         exclude: /node_modules/,
-        loader: "ts-loader",
-        options: {
-          compilerOptions: {
-            module: "ESNext"
-          },
-          silent: true
-        },
-        test: /.tsx?$/
+        test: /.tsx?$/,
+        use: {
+          loader: "ts-loader",
+          options: {
+            compilerOptions: {
+              module: "ESNext"
+            },
+            silent: true
+          }
+        }
       },
       {
         exclude: /node_modules/,
@@ -29,7 +32,7 @@ const config: webpack.Configuration = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
-              localIdentName: "[hash:base64:10]",
+              localIdentName: "[hash:base64:5]",
               module: true,
               sourceMap: true
             }
@@ -55,16 +58,24 @@ const config: webpack.Configuration = {
     filename: "[chunkhash].min.js"
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      filename: "[chunkhash].min.js",
-      minChunks(module) {
-        return module.context && module.context.indexOf("node_modules") !== -1;
-      },
-      name: "common"
-    }),
     vendorCSS,
     commonCSS,
-    new ManifestPlugin()
+    new ManifestPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      logLevel: "silent",
+      openAnalyzer: false
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      comments: false,
+      compress: {
+        warnings: false
+      },
+      mangle: true,
+      sourceMap: true
+    }),
+    new webpack.optimize.AggressiveMergingPlugin()
   ]
 };
 

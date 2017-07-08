@@ -1,6 +1,19 @@
 language: node_js
-node_js:
-  - '7'
 
-script:
- - npm run lint
+node_js:
+- '8'
+
+cache:
+  directories:
+  - node_modules
+
+notifications:
+  email: 'never'
+
+sudo: required
+dist: trusty
+
+jobs:
+  include:
+  - script: npm run lint
+  - script: npm run build

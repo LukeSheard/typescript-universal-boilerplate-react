@@ -3,17 +3,34 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "betterScripts": {
+    "start": {
+      "env": {
+        "DEBUG": "app:*",
+        "NODE_ENV": "production"
+      },
+      "command": "ts-node --fast src/server"
+    },
+    "start:dev": {
+      "env": {
+        "DEBUG": "app:*",
+        "NODE_ENV": "development"
+      },
+      "command": "nodemon ./src/server"
+    }
+  },
   "scripts": {
     "prebuild": "rm -rf build",
-    "build": "webpack -p --env=production --optimize-minimize",
+    "build": "webpack -p --env=production",
     "lint": "tslint --project tsconfig.json --type-check",
-    "start": "cross-env DEBUG=app:*,express:router:* NODE_ENV=production ts-node ./src/server/index.ts",
-    "start:dev": "cross-env DEBUG=app:* ts-node ./src/server/index.ts"
+    "start": "better-npm-run start",
+    "start:dev": "better-npm-run start:dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "better-npm-run": "0.0.15",
     "cross-env": "^5.0.1",
     "css-modules-require-hook": "^4.0.6",
     "debug": "^2.6.8",
@@ -32,10 +49,10 @@
     "@types/react-router": "^3.0.12",
     "@types/webpack": "^3.0.1",
     "@types/webpack-dev-middleware": "^1.9.1",
-    "@types/webpack-hot-middleware": "^2.15.0",
-    "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "nodemon": "^1.11.0",
     "normalize.css": "^7.0.0",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.2.2",
@@ -46,7 +63,6 @@
     "webpack": "^3.0.0",
     "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-middleware": "^1.11.0",
-    "webpack-hot-middleware": "^2.18.1",
     "webpack-manifest-plugin": "^1.1.0",
     "webpack-merge": "^4.1.0"
   }

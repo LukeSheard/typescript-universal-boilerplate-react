@@ -5,7 +5,7 @@ import dev from "./config/webpack/webpack:dev";
 import prod from "./config/webpack/webpack:prod";
 
 function createConfig(env: string): webpack.Configuration {
-  const config = merge(base, env === "production" ? prod : dev);
+  const config = merge(base(env), env === "production" ? prod : dev);
 
   return config;
 }

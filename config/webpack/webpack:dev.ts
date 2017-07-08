@@ -1,9 +1,10 @@
 import * as webpack from "webpack";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 const config: webpack.Configuration = {
   devtool: "inline-source-map",
   entry: {
-    main: ["webpack-hot-middleware/client", "./src/client"]
+    main: "./src/client"
   },
   module: {
     rules: [
@@ -55,7 +56,13 @@ const config: webpack.Configuration = {
     filename: "[name].js",
     pathinfo: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin({
+      logLevel: "silent",
+      openAnalyzer: false
+    })
+  ]
 };
 
 export default config;
