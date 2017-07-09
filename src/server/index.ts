@@ -18,6 +18,7 @@ app.use(webpack);
 app.get("*", render);
 
 webpack.waitUntilValid(() => {
+  webpack.close();
   app.listen(8080, () => {
     log("Server started");
   });

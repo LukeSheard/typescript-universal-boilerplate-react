@@ -11,15 +11,12 @@ const config: webpack.Configuration = {
       {
         exclude: /node_modules/,
         test: /.tsx?$/,
-        use: [
-          "react-hot-loader",
-          {
-            loader: "ts-loader",
-            options: {
-              silent: true
-            }
+        use: {
+          loader: "ts-loader",
+          options: {
+            silent: true
           }
-        ]
+        }
       },
       {
         exclude: /node_modules/,

@@ -25,7 +25,8 @@ const config: webpack.Configuration = {
             compilerOptions: {
               module: "ESNext"
             },
-            silent: true
+            silent: true,
+            transpileOnly: true
           }
         }
       },
