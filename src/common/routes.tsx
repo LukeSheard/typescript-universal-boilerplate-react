@@ -1,17 +1,12 @@
 import debug from "debug";
 import * as React from "react";
-import { IndexRoute, Redirect, Route } from "react-router";
-import App from "./app";
+import { IndexRoute, Route } from "react-router";
 
 const log = debug("app:routing");
 
-export function loadRoute(cb) {
-  return mod => cb(null, mod.default);
-}
-
 export function loadModule(modImport) {
   return (_, cb) => {
-    modImport.then(({ default: mod }) => cb(null, mod)).catch(error => {
+    modImport().then(({ default: mod }) => cb(null, mod)).catch(error => {
       log(error);
       cb("Error");
     });
@@ -20,23 +15,41 @@ export function loadModule(modImport) {
 
 export default function() {
   return (
-    <Route path="/" component={App}>
+    <Route
+      path="/"
+      getComponent={loadModule(() =>
+        import(/* webpackChunkName: "/-container" */ "./app")
+      )}
+    >
       <IndexRoute
-        getComponent={loadModule(import(/* webpackChunkName: "/" */ "./home"))}
+        getComponent={loadModule(() =>
+          import(/* webpackChunkName: "/" */ "./home")
+        )}
       />
       <Route
         path="page"
-        getComponent={loadModule(
-          import(/* webpackChunkName: "/page" */ "./page")
+        getComponent={loadModule(() =>
+          import(/* webpackChunkName: "/page-container" */ "./page")
         )}
-      />
+      >
+        <IndexRoute
+          getComponent={loadModule(() =>
+            import(/* webpackChunkName: "/page" */ "./subpage")
+          )}
+        />
+        <Route
+          path="2"
+          getComponent={loadModule(() =>
+            import(/* webpackChunkName: "/page/2" */ "./subpage-2")
+          )}
+        />
+      </Route>
       <Route
         path="not-found"
-        getComponent={loadModule(
+        getComponent={loadModule(() =>
           import(/* webpackChunkName: "/not-found" */ "./not-found")
         )}
       />
-      <Redirect from="*" to="not-found" />
     </Route>
   );
 }

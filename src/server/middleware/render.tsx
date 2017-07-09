@@ -8,7 +8,7 @@ export function toChunkList(chunks: string | string[] | undefined): string[] {
   return chunks ? (Array.isArray(chunks) ? chunks : [chunks]) : [];
 }
 
-export class HTML extends React.Component<any, any> {
+export class HTML extends React.Component<any, {}> {
   public render() {
     const { children, assets, url } = this.props;
     return (
@@ -34,7 +34,7 @@ export class HTML extends React.Component<any, any> {
     );
   }
 
-  private createScript(chunks) {
+  private createScript(chunks: string | string[]) {
     return toChunkList(chunks)
       .filter(script => script.endsWith(".js"))
       .map(script =>
@@ -42,7 +42,7 @@ export class HTML extends React.Component<any, any> {
       );
   }
 
-  private createStylesheet(chunks) {
+  private createStylesheet(chunks: string | string[]) {
     return toChunkList(chunks)
       .filter(sheet => sheet.endsWith(".css"))
       .map(sheet => <link key={sheet} href={`/${sheet}`} rel="stylesheet" />);

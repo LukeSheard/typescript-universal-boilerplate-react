@@ -14,9 +14,6 @@ const app: Express.Express = Express();
   NOTE: In Production we close the middleware to stop looking for updates.
 */
 app.use(webpack);
-if (process.env.NODE_ENV === "production") {
-  webpack.close();
-}
 
 app.get("*", render);
 

@@ -3,8 +3,14 @@ import * as webpack from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import * as ManifestPlugin from "webpack-manifest-plugin";
 
-const commonCSS = new ExtractTextPlugin("[chunkhash].min.css");
-const vendorCSS = new ExtractTextPlugin("[chunkhash].min.css");
+const commonCSS = new ExtractTextPlugin({
+  allChunks: true,
+  filename: "[chunkhash].min.css"
+});
+const vendorCSS = new ExtractTextPlugin({
+  allChunks: true,
+  filename: "[chunkhash].min.css"
+});
 
 const config: webpack.Configuration = {
   devtool: "source-map",
