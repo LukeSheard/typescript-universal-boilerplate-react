@@ -18,36 +18,36 @@ export default function() {
     <Route
       path="/"
       getComponent={loadModule(() =>
-        import(/* webpackChunkName: "/-container" */ "./app")
+        import(/* webpackChunkName: "/-container" */ "./pages/app")
       )}
     >
       <IndexRoute
         getComponent={loadModule(() =>
-          import(/* webpackChunkName: "/" */ "./home")
+          import(/* webpackChunkName: "/" */ "./pages/home")
         )}
       />
       <Route
         path="page"
         getComponent={loadModule(() =>
-          import(/* webpackChunkName: "/page-container" */ "./page")
+          import(/* webpackChunkName: "/page-container" */ "./pages/page")
         )}
       >
         <IndexRoute
           getComponent={loadModule(() =>
-            import(/* webpackChunkName: "/page" */ "./subpage")
+            import(/* webpackChunkName: "/page" */ "./pages/subpage")
           )}
         />
         <Route
           path="2"
           getComponent={loadModule(() =>
-            import(/* webpackChunkName: "/page/2" */ "./subpage-2")
+            import(/* webpackChunkName: "/page/2" */ "./pages/subpage-2")
           )}
         />
       </Route>
       <Route
         path="not-found"
         getComponent={loadModule(() =>
-          import(/* webpackChunkName: "/not-found" */ "./not-found")
+          import(/* webpackChunkName: "/not-found" */ "./pages/not-found")
         )}
       />
     </Route>

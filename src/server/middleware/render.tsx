@@ -1,16 +1,26 @@
 import { NextFunction, Request, Response } from "express";
 import * as React from "react";
 import * as ReactDOM from "react-dom/server";
+import { Provider } from "react-redux";
 import { createMemoryHistory, match, RouterContext } from "react-router";
+import { syncHistoryWithStore } from "react-router-redux";
 import createRoutes from "../../common/routes";
+import createStore, { IAppStore } from "../../common/store";
 
 export function toChunkList(chunks: string | string[] | undefined): string[] {
   return chunks ? (Array.isArray(chunks) ? chunks : [chunks]) : [];
 }
 
-export class HTML extends React.Component<any, {}> {
+export interface IHTMLProps extends React.Props<HTML> {
+  children: any;
+  assets: any;
+  url: string;
+  store: IAppStore;
+}
+
+export class HTML extends React.Component<IHTMLProps, {}> {
   public render() {
-    const { children, assets, url } = this.props;
+    const { children, assets, url, store } = this.props;
     return (
       <html>
         <head>
@@ -24,6 +34,13 @@ export class HTML extends React.Component<any, {}> {
             id="root"
             dangerouslySetInnerHTML={{
               __html: ReactDOM.renderToString(children)
+            }}
+          />
+          <script
+            id="app-initial-state"
+            type="application/json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(store.getState())
             }}
           />
           {this.createScript(assets.common)}
@@ -49,13 +66,18 @@ export class HTML extends React.Component<any, {}> {
   }
 }
 
-export function createPage(req: Request, res: Response, renderProps): string {
+export function createPage(
+  req: Request,
+  res: Response,
+  store: IAppStore,
+  renderProps
+): string {
   const assets = res.locals.webpackStats.toJson().assetsByChunkName;
   return ReactDOM.renderToStaticMarkup(
-    <HTML assets={assets} url={req.url}>
-      <div>
+    <HTML assets={assets} url={req.url} store={store}>
+      <Provider store={store}>
         <RouterContext {...renderProps} />
-      </div>
+      </Provider>
     </HTML>
   );
 }
@@ -65,9 +87,11 @@ export default function render(
   res: Response,
   next: NextFunction
 ): void {
-  const history = createMemoryHistory({
+  const routeHistory = createMemoryHistory({
     entries: [req.url]
   });
+  const store = createStore(routeHistory);
+  const history = syncHistoryWithStore(routeHistory, store);
   const routes = createRoutes();
 
   match({ history, routes }, (error, redirectLocation, renderProps) => {
@@ -80,7 +104,7 @@ export default function render(
     } else if (renderProps) {
       res.status(200);
       res.write("<!doctype HTML>");
-      res.write(createPage(req, res, renderProps));
+      res.write(createPage(req, res, store, renderProps));
       return res.end();
     }
 

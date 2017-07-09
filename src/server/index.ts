@@ -9,16 +9,18 @@ const log = debug("app:server");
 
 const app: Express.Express = Express();
 
-/*
-  Webpack Middleware
-  NOTE: In Production we close the middleware to stop looking for updates.
-*/
 app.use(webpack);
 
 app.get("*", render);
 
 webpack.waitUntilValid(() => {
-  webpack.close();
+  /*
+    Webpack Middleware
+    NOTE: In Production we close the middleware to stop looking for updates.
+  */
+  if (process.env.NODE_ENV === "production") {
+    webpack.close();
+  }
   app.listen(8080, () => {
     log("Server started");
   });

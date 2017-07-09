@@ -81,8 +81,7 @@ const config: webpack.Configuration = {
       },
       mangle: true,
       sourceMap: true
-    }),
-    new webpack.optimize.AggressiveMergingPlugin()
+    })
   ]
 };
 
